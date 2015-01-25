@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3edd9d736d85f499ea5296840235b3, type: 3}
+  m_Name: PreAlfaLibrary
+  m_EditorClassIdentifier: 
+  CubeList:
+  - Key: 2524c462-ad3b-4235-9bf6-871bf23d832f
+    Object: {fileID: 100002, guid: 65fb60dea6e5c1f4bb16d0301450ad22, type: 2}
+  - Key: 7823cd0b-1fa4-43e5-833a-b5987f8bc0fb
+    Object: {fileID: 100022, guid: d7c030a7414f2f44c9c36e68a110f0f7, type: 2}
+  - Key: 60b2e12b-b01e-4f96-b975-bfb3151e5ed6
+    Object: {fileID: 100012, guid: 2169a0b1ae74354448b001c0478a9983, type: 2}
+  - Key: 57b51ad2-983c-4074-b71b-ca64af479650
+    Object: {fileID: 100012, guid: e8694fb46518a304aa648f3e4c04b190, type: 2}
+  - Key: 4d5a2e77-ecff-4de4-b2c2-f3d0ee81e41f
+    Object: {fileID: 100002, guid: ac4e756834d68f345a16dc722f81ddd6, type: 2}

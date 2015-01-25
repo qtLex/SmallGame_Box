@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<CubeGridXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Library="Assets/Tiles/PreAlfaLibrary.asset" Size="10">
+  <Values>
+    <Cube key="(0.0, 0.0, 0.0)" index="">
+      <_position x="0" y="0" z="0" />
+    </Cube>
+    <Cube key="(0.0, 0.0, -200.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="0" y="0" z="-200" />
+    </Cube>
+    <Cube key="(-10.0, 0.0, -200.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-10" y="0" z="-200" />
+    </Cube>
+    <Cube key="(-20.0, 0.0, -200.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-20" y="0" z="-200" />
+    </Cube>
+    <Cube key="(-20.0, 0.0, -210.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-20" y="0" z="-210" />
+    </Cube>
+    <Cube key="(-10.0, 0.0, -210.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-10" y="0" z="-210" />
+    </Cube>
+    <Cube key="(0.0, 0.0, -210.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="0" y="0" z="-210" />
+    </Cube>
+    <Cube key="(0.0, 0.0, -220.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="0" y="0" z="-220" />
+    </Cube>
+    <Cube key="(-10.0, 0.0, -220.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-10" y="0" z="-220" />
+    </Cube>
+    <Cube key="(-20.0, 0.0, -220.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-20" y="0" z="-220" />
+    </Cube>
+    <Cube key="(-10.0, 0.0, -230.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-10" y="0" z="-230" />
+    </Cube>
+    <Cube key="(-20.0, 0.0, -230.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="-20" y="0" z="-230" />
+    </Cube>
+    <Cube key="(0.0, 0.0, -230.0)" index="2524c462-ad3b-4235-9bf6-871bf23d832f">
+      <_position x="0" y="0" z="-230" />
+    </Cube>
+    <Cube key="(0.0, 10.0, -220.0)" index="7823cd0b-1fa4-43e5-833a-b5987f8bc0fb">
+      <_position x="0" y="10" z="-220" />
+    </Cube>
+    <Cube key="(0.0, 10.0, -230.0)" index="7823cd0b-1fa4-43e5-833a-b5987f8bc0fb">
+      <_position x="0" y="10" z="-230" />
+    </Cube>
+    <Cube key="(0.0, 20.0, -220.0)" index="7823cd0b-1fa4-43e5-833a-b5987f8bc0fb">
+      <_position x="0" y="20" z="-220" />
+    </Cube>
+    <Cube key="(0.0, 20.0, -230.0)" index="7823cd0b-1fa4-43e5-833a-b5987f8bc0fb">
+      <_position x="0" y="20" z="-230" />
+    </Cube>
+    <Cube key="(0.0, 30.0, -230.0)" index="7823cd0b-1fa4-43e5-833a-b5987f8bc0fb">
+      <_position x="0" y="30" z="-230" />
+    </Cube>
+    <Cube key="(-20.0, 10.0, -230.0)" index="57b51ad2-983c-4074-b71b-ca64af479650">
+      <_position x="-20" y="10" z="-230" />
+    </Cube>
+    <Cube key="(0.0, 40.0, -230.0)" index="4d5a2e77-ecff-4de4-b2c2-f3d0ee81e41f">
+      <_position x="0" y="40" z="-230" />
+    </Cube>
+  </Values>
+</CubeGridXML>

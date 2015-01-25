@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 0ab1aaba50ce5884e86ebebef9371bd1
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - TargetObject: {instanceID: 0}
+  - TransparentShader: {fileID: 36, guid: 0000000000000000f000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

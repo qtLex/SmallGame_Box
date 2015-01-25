@@ -1,0 +1,9 @@
+<ListOfTask>
+  <Task file="" description="Избавиться от дублирования элементов при создании" priority="High" completed="True" />
+  <Task file="" description="Переделать инспектор: Вывод текущего режима на кнопке" completed="True" />
+  <Task file="" description="Вынести интерфейс на меню в редакторе сцены" completed="True" />
+  <Task file="" description="Исключить вывод курсора на  блок" completed="True" />
+  <Task file="" description="Индикация удаляемого блока" completed="True" />
+  <Task file="" description="Подумать о реализации generic сетки" />
+  <Task file="" description="сериализация сетки" />
+</ListOfTask>

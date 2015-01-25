@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<CubeGridXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Library="Assets/Tiles/New library.asset" Size="10">
+  <Values>
+    <Cube key="(-20.0, 0.0, 60.0)" index="" position="(-20.0, 0.0, 60.0)" />
+    <Cube key="(-20.0, 0.0, 70.0)" index="" position="(-20.0, 0.0, 70.0)" />
+    <Cube key="(-10.0, 0.0, 70.0)" index="" position="(-10.0, 0.0, 70.0)" />
+    <Cube key="(-10.0, 10.0, 70.0)" index="" position="(-10.0, 10.0, 70.0)" />
+    <Cube key="(-20.0, 10.0, 70.0)" index="" position="(-20.0, 10.0, 70.0)" />
+    <Cube key="(-20.0, 0.0, 80.0)" index="" position="(-20.0, 0.0, 80.0)" />
+    <Cube key="(-10.0, 0.0, 80.0)" index="" position="(-10.0, 0.0, 80.0)" />
+    <Cube key="(-20.0, 10.0, 80.0)" index="" position="(-20.0, 10.0, 80.0)" />
+    <Cube key="(-10.0, 10.0, 80.0)" index="" position="(-10.0, 10.0, 80.0)" />
+    <Cube key="(0.0, 10.0, 80.0)" index="" position="(0.0, 10.0, 80.0)" />
+    <Cube key="(0.0, 10.0, 70.0)" index="" position="(0.0, 10.0, 70.0)" />
+    <Cube key="(10.0, 10.0, 80.0)" index="" position="(10.0, 10.0, 80.0)" />
+    <Cube key="(10.0, 10.0, 70.0)" index="" position="(10.0, 10.0, 70.0)" />
+    <Cube key="(-10.0, 20.0, 80.0)" index="" position="(-10.0, 20.0, 80.0)" />
+    <Cube key="(0.0, 20.0, 80.0)" index="" position="(0.0, 20.0, 80.0)" />
+    <Cube key="(10.0, 20.0, 80.0)" index="" position="(10.0, 20.0, 80.0)" />
+    <Cube key="(0.0, 30.0, 80.0)" index="" position="(0.0, 30.0, 80.0)" />
+    <Cube key="(10.0, 20.0, 90.0)" index="" position="(10.0, 20.0, 90.0)" />
+  </Values>
+</CubeGridXML>

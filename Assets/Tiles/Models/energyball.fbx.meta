@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: c94ca1d5738699e4ba6ddd570beedd24
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ForceField
+    100004: Root
+    100006: Root|Bone
+    100008: Root|Bone2
+    100010: Root|Bone3
+    100012: Root|Bone4
+    100014: Root|Bone5
+    100016: Root|Bone6
+    100018: Root|Bone7
+    100020: Root|Bone8
+    100022: Root|MainBone
+    100024: Sphere
+    400000: //RootNode
+    400002: ForceField
+    400004: Root
+    400006: Root|Bone
+    400008: Root|Bone2
+    400010: Root|Bone3
+    400012: Root|Bone4
+    400014: Root|Bone5
+    400016: Root|Bone6
+    400018: Root|Bone7
+    400020: Root|Bone8
+    400022: Root|MainBone
+    400024: Sphere
+    2300000: ForceField
+    2300002: //RootNode
+    3300000: ForceField
+    3300002: //RootNode
+    4300000: Sphere
+    4300002: ForceField
+    7400000: Main
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Sphere
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Main
+      takeName: Scene
+      firstFrame: 1
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ForceField
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Root|Bone
+        weight: 1
+      - path: Root/Root|Bone/Root|Bone2
+        weight: 1
+      - path: Root/Root|Bone/Root|Bone3
+        weight: 1
+      - path: Root/Root|Bone/Root|Bone4
+        weight: 1
+      - path: Root/Root|Bone/Root|Bone5
+        weight: 1
+      - path: Root/Root|Bone/Root|Bone6
+        weight: 1
+      - path: Root/Root|Bone/Root|Bone7
+        weight: 1
+      - path: Root/Root|Bone/Root|Bone8
+        weight: 1
+      - path: Root/Root|Bone/Root|MainBone
+        weight: 1
+      - path: Sphere
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Root
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
