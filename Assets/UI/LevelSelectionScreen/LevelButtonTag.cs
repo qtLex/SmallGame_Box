@@ -12,6 +12,7 @@ public class LevelButtonTag : AnyButtonScript {
 		Manager = FindObjectOfType<LevelManager>() as LevelManager;
 	}
 
+	// ived
 	public override void onClick(){
 
 		if(Manager == null) return;
