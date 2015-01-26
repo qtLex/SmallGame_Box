@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
 public class AnyButtonScript : MonoBehaviour {
-	
+
+		// Добавил коммент
 		public virtual void AwakeBase(){
 			Button buttonComponent = GetComponent<Button>();
 			if (buttonComponent == null){
