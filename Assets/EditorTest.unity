@@ -700,11 +700,11 @@ MonoBehaviour:
   LevelFolder: D:/Projects/Unity/SmallGame_Prototype/Assets/Levels
   UseDefaultFolder: 1
   LevelList:
-  - path: E:\SmallGame_Prototype\SmallGame_Prototype\Assets\Levels\Level.xml
-  - path: E:\SmallGame_Prototype\SmallGame_Prototype\Assets\Levels\Level2.xml
-  - path: E:\SmallGame_Prototype\SmallGame_Prototype\Assets\Levels\Level3.xml
-  - path: E:\SmallGame_Prototype\SmallGame_Prototype\Assets\Levels\Level4.xml
-  - path: E:\SmallGame_Prototype\SmallGame_Prototype\Assets\Levels\Level5.xml
+  - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level.xml
+  - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level2.xml
+  - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level3.xml
+  - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level4.xml
+  - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level5.xml
 --- !u!114 &797972366
 MonoBehaviour:
   m_ObjectHideFlags: 0

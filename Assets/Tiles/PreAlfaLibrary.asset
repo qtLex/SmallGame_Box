@@ -19,6 +19,6 @@ MonoBehaviour:
   - Key: 60b2e12b-b01e-4f96-b975-bfb3151e5ed6
     Object: {fileID: 100012, guid: 2169a0b1ae74354448b001c0478a9983, type: 2}
   - Key: 57b51ad2-983c-4074-b71b-ca64af479650
-    Object: {fileID: 100012, guid: e8694fb46518a304aa648f3e4c04b190, type: 2}
+    Object: {fileID: 100002, guid: c1f5dd74944833b4f9a633d7da4429f3, type: 2}
   - Key: 4d5a2e77-ecff-4de4-b2c2-f3d0ee81e41f
     Object: {fileID: 100002, guid: ac4e756834d68f345a16dc722f81ddd6, type: 2}
