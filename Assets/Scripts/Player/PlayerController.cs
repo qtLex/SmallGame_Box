@@ -24,11 +24,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool isMoving(){
-
-		return !animator.GetCurrentAnimatorStateInfo(0).IsName("PStay");		
+		
+		return !animator.GetCurrentAnimatorStateInfo(0).IsName("PStay"); 	
 	}
 
 	public bool MovingKeyDown(KeyCode key, bool bakehistory = true){
+
 		if(isMoving()) return false;
 
 		Vector3 direction = Vector3.zero;
@@ -106,6 +107,8 @@ public class PlayerController : MonoBehaviour {
 			if(bakehistory || UseAnimationOnCancel)
 				animator.SetTrigger("MoveDown");
 		}
+
+		animator.Update(Time.deltaTime);
 
 		return true;
 	}	

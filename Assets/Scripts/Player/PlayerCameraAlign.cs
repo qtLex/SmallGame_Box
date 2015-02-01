@@ -1,50 +1,52 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
+//[RequireComponent(typeof(PlayerController))]
 public class PlayerCameraAlign : MonoBehaviour {
 
 	Transform MainCameraTransform;
-	// Use this for initialization
+	PlayerController playerComntroller;
+	float changeDelay = 0.2f;
+	float currentDelay = 0;
+
 	void Start () {
 		MainCameraTransform = Camera.main.transform;
+		playerComntroller = GetComponent<PlayerController>();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-	
-		Vector3 playerDirection = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
-		Vector3 cameraDirection = new Vector3(MainCameraTransform.forward.x, 0, MainCameraTransform.forward.z).normalized;
+
+		if (playerComntroller.isMoving()) return;
+		
+		Vector3 playerDirection = transform.forward;
+		Vector3 cameraDirection = Vector3.ProjectOnPlane(MainCameraTransform.forward, transform.up).normalized;
 
 		float dotCameraPlayer = Vector3.Dot(playerDirection, cameraDirection);
-
-		float angle = Vector3.Angle(playerDirection,cameraDirection);
+		currentDelay -= Time.deltaTime;
 
 		if(dotCameraPlayer < 0.5f){
 
-			Vector3 newForward = Vector3.Cross(playerDirection, Vector3.up);
-			if (Vector3.Dot(newForward, cameraDirection) > 0.5f){
-				transform.forward = newForward;
-			}else{
-				transform.forward = -newForward;
+			if (currentDelay <= 0){
+
+				Vector3 newForward = Vector3.Cross(playerDirection, transform.up);			
+
+				if (Vector3.Dot(newForward, cameraDirection) > 0.5f){
+
+					Debug.DrawLine(transform.position, transform.position + newForward * 10, Color.red, 1.0f);
+
+					transform.LookAt(newForward + transform.position, transform.up);
+					currentDelay = changeDelay;
+							
+				}else{
+
+					Debug.DrawLine(transform.position, -newForward * 10 + transform.position, Color.red, 1.0f);
+
+					transform.LookAt(-newForward + transform.position, transform.up);
+					currentDelay = changeDelay;
+
+				};
+
 			};
-
-		}
-
-	}
-
-	Vector3 SnapTo(Vector3 v3, float snapAngle) {
-		float   angle = Vector3.Angle (v3, Vector3.up);
-		if (angle < snapAngle / 2.0f)          // Cannot do cross product 
-			return Vector3.up * v3.magnitude;  //   with angles 0 & 180
-		if (angle > 180.0f - snapAngle / 2.0f)
-			return Vector3.down * v3.magnitude;
-		
-		float t = Mathf.Round(angle / snapAngle);
-		
-		float deltaAngle = (t * snapAngle) - angle;
-		
-		Vector3 axis = Vector3.Cross(Vector3.up, v3);
-		Quaternion q = Quaternion.AngleAxis (deltaAngle, axis);
-		return q * v3;
+		};
 	}
 }
