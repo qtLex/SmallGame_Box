@@ -23,9 +23,13 @@ public class PlayerController : MonoBehaviour {
 		animator = GetComponent<Animator>();
 	}
 
+	public bool isMoving(){
+		return !animator.GetCurrentAnimatorStateInfo(0).IsName("PStay");
+	}
+
 	public bool MovingKeyDown(KeyCode key, bool bakehistory = true){
-		if(!animator.GetCurrentAnimatorStateInfo(0).IsName("PStay"))
-			return false;
+
+		if(isMoving()) return false;
 
 		Vector3 direction = Vector3.zero;
 

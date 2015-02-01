@@ -33,11 +33,13 @@ public class MovingBox : BaseBox
 
 	public override void UserAction(object sender, EventArgs evArgs)
 	{
+		GameObject player = GlobalOptions.Player;
+
+		if(player.GetComponent<PlayerController>().isMoving()) return;
+
 		// проверим есть ли рядом хотябы один объект
 		if(!CanMove())
 			return;
-
-		GameObject player = GlobalOptions.Player;
 
 		// проверим можно ли двигаться в указаном направлении
 		Vector3 direction = -player.transform.up;
