@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool isMoving(){
-		
 		return !animator.GetCurrentAnimatorStateInfo(0).IsName("PStay"); 	
 	}
 

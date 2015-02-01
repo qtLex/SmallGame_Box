@@ -33,11 +33,13 @@ public class MovingBox : BaseBox
 
 	public override void UserAction(object sender, EventArgs evArgs)
 	{
+		GameObject player = GlobalOptions.Player;
+
+		if(player.GetComponent<PlayerController>().isMoving()) return;
+
 		// проверим есть ли рядом хотябы один объект
 		if(!CanMove())
 			return;
-
-		GameObject player = GlobalOptions.Player;
 
 		// проверим можно ли двигаться в указаном направлении
 		Vector3 direction = -player.transform.up;
@@ -57,6 +59,21 @@ public class MovingBox : BaseBox
 		                                        player.transform.position.z + coef*direction.z);
 	
 		ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Empty, this.gameObject);
+
+		// установим тригеры аниматора
+		string triggerName = "";
+		if(direction == transform.forward)       triggerName = "Forward";
+		else if(direction == -transform.forward) triggerName = "Back";
+		else if(direction == transform.up)       triggerName = "Top";
+		else if(direction == -transform.up)      triggerName = "Bottom";
+		else if(direction == transform.right)    triggerName = "Right";
+		else if(direction == -transform.right)   triggerName = "Left";
+
+		if(triggerName != "") thisAnimator.SetTrigger(triggerName);
+
+		Animator pAnimator = player.GetComponent<Animator>();
+		pAnimator.SetTrigger("UserAction");
+
 	}
 
 	public override void OnRetire(){
