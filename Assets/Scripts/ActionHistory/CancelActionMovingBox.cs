@@ -32,10 +32,17 @@ public class CancelActionMovingBox : BaseCancelAction {
 		else if(direction == transform.right)    triggerName = "Right";
 		else if(direction == -transform.right)   triggerName = "Left";
 		
-		if(triggerName != "") GetComponent<Animator>().SetTrigger(triggerName);
+		if(triggerName != ""){
+			Animator thisAnimator = GetComponent<Animator>();
+			thisAnimator.SetTrigger(triggerName);
+			thisAnimator.Update(Time.deltaTime);
+		}
 		
 		Animator pAnimator = player.GetComponent<Animator>();
 		pAnimator.SetTrigger("UserActionNegative");
+		pAnimator.Update(Time.deltaTime);
+
+
 		
 		return true;
 	}

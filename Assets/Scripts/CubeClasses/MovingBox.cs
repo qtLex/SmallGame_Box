@@ -70,9 +70,11 @@ public class MovingBox : BaseBox
 		else if(direction == -transform.right)   triggerName = "Left";
 
 		if(triggerName != "") thisAnimator.SetTrigger(triggerName);
+		thisAnimator.Update(Time.deltaTime);
 
 		Animator pAnimator = player.GetComponent<Animator>();
 		pAnimator.SetTrigger("UserAction");
+		pAnimator.Update(Time.deltaTime);
 
 	}
 
