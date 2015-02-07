@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_Color: {r: .815686285, g: .556862772, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .965922892, g: 1, b: .382352948, a: 1}
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: .75686276, g: .75686276, b: .75686276, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 941a3664b0f9b1142b63edb662582d86, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

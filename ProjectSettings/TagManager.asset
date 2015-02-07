@@ -4,6 +4,7 @@
 TagManager:
   tags:
   - grid_element
+  - ps_action
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

@@ -339,7 +339,9 @@ public class CubeGridEditor : Editor {
 				m_marker.transform.localScale = m_marker.transform.localScale * (1 + m_marker.transform.localScale.x / 100.0f);
 			}else{
 				m_marker.transform.localScale = new Vector3(blockSize, blockSize, blockSize);
-				m_markerMaterial.color = Color.Lerp(Color.green, meshRenderer.sharedMaterial.color, 0.85f);
+
+				//if(m_markerMaterial == null) m_markerMaterial = new Material(meshRenderer.sharedMaterial);
+				//m_markerMaterial.color = Color.Lerp(Color.green, meshRenderer.sharedMaterial.color, 0.85f);
 			}
 
 			m_marker.transform.position = intersectionPoint;

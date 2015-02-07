@@ -40,5 +40,8 @@
     <Cube key="(-20.0, 10.0, -200.0)" index="4d5a2e77-ecff-4de4-b2c2-f3d0ee81e41f">
       <_position x="-20" y="10" z="-200" />
     </Cube>
+    <Cube key="(-30.0, 0.0, -210.0)" index="60b2e12b-b01e-4f96-b975-bfb3151e5ed6">
+      <_position x="-30" y="0" z="-210" />
+    </Cube>
   </Values>
 </CubeGridXML>
