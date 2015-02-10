@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour {
 	[HideInInspector]
 	public string LevelFolder = "";
 	private CubeGrid _grid;
+	private string CurrentLevel;
 	public bool UseDefaultFolder = false;
 
 	[SerializeField]
@@ -85,9 +86,11 @@ public class LevelManager : MonoBehaviour {
 				_grid = sing.Grid;
 			}
 		}
+		
+		CurrentLevel = LevelList[_index].path;
 
 		_grid.ClearDictionary();
-		_grid = CubeGridXML.ToGrid(LevelList[_index].path);
+		_grid = CubeGridXML.ToGrid(CurrentLevel);
 
 	}
 
@@ -99,10 +102,18 @@ public class LevelManager : MonoBehaviour {
 				_grid = sing.Grid;
 			}
 		}
-		
+
+		CurrentLevel = _path;
+
 		_grid.ClearDictionary();
 		_grid = CubeGridXML.ToGrid(_path);
 		
+	}
+
+	public void ReloadCurrentLevel(){
+		if(CurrentLevel == null) return;
+
+		LoadByPath(CurrentLevel);
 	}
 
 }

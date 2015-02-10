@@ -13,5 +13,7 @@ public class TrapBox : BaseBox {
 
 		if(!_ps.isPlaying)
 			_ps.Play(true);
+
+		Messenger.Invoke("Dead", this);
 	}
 }

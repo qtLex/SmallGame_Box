@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class MenuManager : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class MenuManager : MonoBehaviour {
 		if(MenuKey == KeyCode.None){
 			MenuKey = KeyCode.Escape;
 		}
+
+		Messenger.AddListener("Dead", ShowDeadMenu, 2);
 	}
 
 	void Update () {
@@ -48,4 +51,7 @@ public class MenuManager : MonoBehaviour {
 
 	}
 
+	public void ShowDeadMenu(object sender, EventArgs args){
+		ShowMenu(2);
+	}
 }

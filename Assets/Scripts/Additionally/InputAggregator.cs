@@ -21,10 +21,7 @@ public class InputAggregator : MonoBehaviour {
 	// Update is called once per frame
 	void Update (){
 
-		if(Input.GetKeyDown(KeyCode.Escape)){
-
-		}
-		else if(Input.GetKeyDown(KeyCode.UpArrow)
+		if(Input.GetKeyDown(KeyCode.UpArrow)
 		        && GlobalOptions.Player != null){
 			GlobalOptions.Player.GetComponent<PlayerController>().MovingKeyDown(KeyCode.UpArrow);
 		}
