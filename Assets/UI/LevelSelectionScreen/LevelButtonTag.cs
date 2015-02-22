@@ -19,5 +19,8 @@ public class LevelButtonTag : AnyButtonScript {
 
 		Manager.LoadByPath(LevelInfo.path);
 
+		// выключаем меню
+		MenuManager menuManager = FindObjectOfType<MenuManager>() as MenuManager;
+		menuManager.HideCurrentMenu();
 	}
 }

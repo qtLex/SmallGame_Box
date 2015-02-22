@@ -20,6 +20,8 @@ public class DeadMenuButtonTag : AnyButtonScript {
 			LevelManager manager = EmptySingleton.GetComponent<LevelManager>();
 			manager.ReloadCurrentLevel();
 
+			MenuManager menuManager = FindObjectOfType<MenuManager>() as MenuManager;
+			menuManager.HideCurrentMenu();
 			break;
 		};
 			

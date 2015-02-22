@@ -10,6 +10,9 @@ public class SpawnPoint : BaseBox {
 		if (GlobalOptions.Player == null) return;
 
 		GlobalOptions.Player.transform.position = transform.position;
+		GlobalOptions.Player.transform.up = transform.up;
+		GlobalOptions.Player.transform.right = transform.right;
+		GlobalOptions.Player.transform.forward = transform.forward;
 	}
 
 }

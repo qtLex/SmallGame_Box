@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour {
 
 		if(!StartingMenu) return;
 
-		if (Input.GetKeyUp(KeyCode.Escape)){
+		if (Input.GetKeyUp(MenuKey)){
 
 			//StartingMenu.gameObject.SetActive(!StartingMenu.gameObject.activeSelf);
 
@@ -53,5 +53,12 @@ public class MenuManager : MonoBehaviour {
 
 	public void ShowDeadMenu(object sender, EventArgs args){
 		ShowMenu(2);
+	}
+
+	public void HideCurrentMenu(){
+		if(CurrentActiveMenu != null)
+			CurrentActiveMenu.SetActive(false);
+
+		CurrentActiveMenu = StartingMenu.gameObject;
 	}
 }
