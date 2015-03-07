@@ -2,6 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class DeadMenuButtonTag : AnyButtonScript {
 
 	public string CommandName;
@@ -26,7 +30,11 @@ public class DeadMenuButtonTag : AnyButtonScript {
 		};
 			
 		case "Exit":{
+#if UNITY_EDITOR
+			EditorApplication.isPlaying = false;
+#else
 			Application.Quit();
+#endif
 			break;
 		};
 			
