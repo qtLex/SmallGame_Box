@@ -123,10 +123,10 @@
                 float4 pos : POSITION;
                 float2 uv : TEXCOORD0;
                 float2 uv2 : TEXCOORD1;
-                float3 lightDirection;
-                float3 viewDir;
-                float3 wNormal;
-                float3 facingOutFactor;
+                float3 lightDirection : TEXCOORD2;
+                float3 viewDir : TEXCOORD3;
+                float3 wNormal : TEXCOORD4;
+                //float3 facingOutFactor : TEXCOORD5;
  
             };
  
