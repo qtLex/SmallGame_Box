@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CameraHideObsticles : MonoBehaviour {
-
+	
 	private bool _isOnView = false;
 	public bool isOnView{
 		set{
@@ -10,41 +10,40 @@ public class CameraHideObsticles : MonoBehaviour {
 		}
 	}
 
-	//private float SourceAlpha = 0.0f;
-	//private float DestAlpha = 0.9f;
-
+	private Renderer _renderer;
+	private float SourceAlpha = 0.0f;
+	private float DestAlpha = 0.9f;
+	
 	public Shader TransparencyShader;
-
+	
 	void Update() {
 
-		if(!GetComponent<Renderer>()){return;};
+		if(!_renderer)
+			_renderer = GetComponent<Renderer>();
 
+		if(!_renderer)
+			return;
+		
 		if (_isOnView){
-
-			//GetComponent<Renderer>().material.shader = TransparencyShader;
-			Color SourceAlpha = GetComponent<Renderer>().material.GetColor("_Color");
-			GetComponent<Renderer>().material.SetColor("_Color", new Color(SourceAlpha.r, SourceAlpha.g, SourceAlpha.b, Mathf.Lerp(SourceAlpha.a, 0f, 4 * Time.deltaTime)));
-
-			//SourceAlpha = GetComponent<Renderer>().material.GetFloat("_AlphaTransparency");
-			//DestAlpha = 0.9f;
-			//GetComponent<Renderer>().material.SetFloat("_AlphaTransparency", Mathf.Lerp(SourceAlpha, DestAlpha, 4 * Time.deltaTime));
-
+			
+			_renderer.material.shader = TransparencyShader;
+			
+			SourceAlpha = _renderer.material.GetFloat("_AlphaTransparency");
+			DestAlpha = 0.9f;
+			_renderer.material.SetFloat("_AlphaTransparency", Mathf.Lerp(SourceAlpha, DestAlpha, 4 * Time.deltaTime));
+			
+		}else{
+			
+			SourceAlpha = _renderer.material.GetFloat("_AlphaTransparency");
+			DestAlpha = 0.0f;
+			_renderer.material.SetFloat("_AlphaTransparency", Mathf.Lerp(SourceAlpha, DestAlpha, 4 * Time.deltaTime));
 		}
-		else{
-
-			Color SourceAlpha = GetComponent<Renderer>().material.GetColor("_Color");
-			//Color DestAlpha = new Color(SourceAlpha.r, SourceAlpha.g, SourceAlpha.b, 255f);
-			GetComponent<Renderer>().material.SetColor("_Color", new Color(SourceAlpha.r, SourceAlpha.g, SourceAlpha.b, Mathf.Lerp(SourceAlpha.a, 255, 4 * Time.deltaTime)));
-			//float SourceAlpha = GetComponent<Renderer>().material.GetFloat("_AlphaTransparency");
-			//float DestAlpha = 0.0f;
-			//GetComponent<Renderer>().material.SetFloat("_AlphaTransparency", Mathf.Lerp(SourceAlpha, DestAlpha, 4 * Time.deltaTime));
-		}
-	
+		
 	}
-
+	
 	void LateUpdate(){
 		_isOnView = false;
 	}
-
+	
 	
 }
