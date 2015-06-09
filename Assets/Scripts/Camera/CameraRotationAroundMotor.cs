@@ -82,7 +82,6 @@ public class CameraRotationAroundMotor : MonoBehaviour {
 
 				ObsticleHandler.TransparencyShader = TransparentShader;
 				ObsticleHandler.isOnView = true;
-
 			}
 		}
 

@@ -160,7 +160,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
---- !u!1 &155120195
+--- !u!1 &155120195 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
   m_PrefabInternal: {fileID: 882512141}
@@ -356,19 +356,19 @@ MonoBehaviour:
   TargetThickness: 4
   CameraDistance: 50
   CameraAngle: 45
-  TransparentShader: {fileID: 4800000, guid: cb2e8f250bb8304418c1c0fd9af35bf2, type: 3}
+  TransparentShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &512063397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 512063390}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28c3312a6b215e240bf37d08782c526a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransparencyShader: {fileID: 4800000, guid: cb2e8f250bb8304418c1c0fd9af35bf2, type: 3}
+  TransparencyShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &512063398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,7 +700,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}

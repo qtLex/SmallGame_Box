@@ -138,7 +138,7 @@ public class CubeGridEditor : Editor {
 
 			if (!m_marker){
 				// Создаем маркер	
-				GameObject blockInst = Resources.LoadAssetAtPath<GameObject>("Assets/Tiles/pre_Cursor.prefab");
+				GameObject blockInst = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Tiles/pre_Cursor.prefab");
 
 				blockInst.transform.localScale = new Vector3(blockSize, blockSize, blockSize);
 

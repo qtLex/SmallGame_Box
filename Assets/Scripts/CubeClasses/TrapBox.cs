@@ -3,16 +3,22 @@ using System.Collections;
 using BoxClasses;
 
 public class TrapBox : BaseBox {
-
-	private ParticleSystem _ps;
 	
+	private MeshRenderer meshRenderer;
+
 	public override void UserStay(){
-		if(!_ps){
-			_ps = GetComponentInChildren<ParticleSystem>();
+
+		MeshRenderer[] childrenMeshRenderers = GetComponentsInChildren<MeshRenderer>();
+		foreach(MeshRenderer childrenMeshRenderer in childrenMeshRenderers){
+			if(childrenMeshRenderer.gameObject.name == "LightEffect")
+				meshRenderer = childrenMeshRenderer;
 		}
 
-		if(!_ps.isPlaying)
-			_ps.Play(true);
+		if(meshRenderer!=null){
+			Debug.Log("Int");
+			meshRenderer.material.SetColor("_TintColor", new Color(255f, 0f, 0f));
+		}
+
 
 		Messenger.Invoke("Dead", this);
 	}
