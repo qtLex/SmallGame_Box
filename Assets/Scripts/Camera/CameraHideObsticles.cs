@@ -20,8 +20,8 @@ public class CameraHideObsticles : MonoBehaviour
 	private Renderer   _renderer;
 	private Renderer[] _childrenRenderer;
 
-	private float SourceAlpha = 255f;
-	private float DestAlpha   = 0f;
+	private float SourceAlpha = 1f;
+	private float DestAlpha   = 0.3f;
 	
 	public Shader TransparencyShader;
 	private Shader standartShader;
@@ -41,13 +41,11 @@ public class CameraHideObsticles : MonoBehaviour
 
 		if (_isOnView){
 			//alphaItem.material.shader = TransparencyShader;
-			DestAlpha = 0f;
+			DestAlpha = 0.3f;
 		}
 		else{
-			DestAlpha = 255f;
+			DestAlpha = 1f;
 		}
-
-		//Debug.Log(alphaItem);
 
 		if(!(alphaItem.material.shader == standartShader)){
 			return;
@@ -60,10 +58,9 @@ public class CameraHideObsticles : MonoBehaviour
 		float difference = Mathf.Abs(DestAlpha - SourceAlpha);
 
 		if(difference != 0){
-			float coef = (difference < 1f) ? 1f : 4 * Time.deltaTime;
+			float coef = (difference < 0.01f) ? 1f : Time.deltaTime;
 
 			alphaItem.material.SetColor("_Color", new Color(CurrentColor.r, CurrentColor.g, CurrentColor.b, Mathf.Lerp(SourceAlpha, DestAlpha, coef)));
-			Debug.Log(Mathf.Lerp(SourceAlpha, DestAlpha, coef));
 		}
 	}
 
