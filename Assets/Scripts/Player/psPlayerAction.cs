@@ -20,7 +20,7 @@ public class psPlayerAction : MonoBehaviour {
 	
 	public void UserAction(object sender, EventArgs evArgs){
 
-		Debug.Log("Проверка");
+		//Debug.Log("Проверка");
 
 		if(transform.up == Vector3.up || transform.up == -Vector3.up){
 			if(!psHor.isPlaying)

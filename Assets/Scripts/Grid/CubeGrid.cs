@@ -109,10 +109,24 @@ public class CubeGrid : CubeGridBase {
 		int i = 0;
 		foreach(SerializableGridElement iterator in _internalArray){
 			if (iterator._object != null){
-
-				_XMLArray[i++] = new CubeGridXML.SerializableXMLElement(iterator._key,
-						 m_CubeLibrary.GetGUIDByObject(iterator._object),
-				                     iterator._object.transform.position);
+				iUseTarget iUseTargetComp = iterator._object.GetComponent<iUseTarget>();
+				if(iUseTargetComp == null || iUseTargetComp.GetTargetPosition() == Vector3.zero){
+					_XMLArray[i++] = new CubeGridXML.SerializableXMLElement(iterator._key,
+					                                                        m_CubeLibrary.GetGUIDByObject(iterator._object),
+					                                                        iterator._object.transform.position,
+					                                                        iterator._object.transform.forward,
+					                                                        iterator._object.transform.up,
+					                                                        iterator._object.transform.right);
+				}
+				else{
+					_XMLArray[i++] = new CubeGridXML.SerializableXMLElement(iterator._key,
+					                                                        m_CubeLibrary.GetGUIDByObject(iterator._object),
+					                                                        iterator._object.transform.position,
+					                                                        iUseTargetComp.GetTargetPosition(),
+					                                                        iterator._object.transform.forward,
+					                                                        iterator._object.transform.up,
+					                                                        iterator._object.transform.right);
+				}
 			
 			}
 		}

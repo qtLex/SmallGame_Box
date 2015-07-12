@@ -23,4 +23,4 @@ MonoBehaviour:
   - Key: 4d5a2e77-ecff-4de4-b2c2-f3d0ee81e41f
     Object: {fileID: 100002, guid: ac4e756834d68f345a16dc722f81ddd6, type: 2}
   - Key: ce933821-c002-46ff-adca-a7231008d7bc
-    Object: {fileID: 0}
+    Object: {fileID: 100004, guid: 65696d05ec8cc844a9b40e2f920b37bc, type: 2}
