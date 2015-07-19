@@ -133,6 +133,7 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
+  m_RepeatDelay: .5
   m_AllowActivationOnMobileDevice: 0
 --- !u!114 &27050041
 MonoBehaviour:
@@ -160,9 +161,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!1001 &99475766
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 155120196}
+    m_Modifications:
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 430726, guid: 15be06b8767660046aa928092ac72000, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 15be06b8767660046aa928092ac72000, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &155120195 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
+  m_PrefabInternal: {fileID: 882512141}
+--- !u!4 &155120196 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
   m_PrefabInternal: {fileID: 882512141}
 --- !u!1 &194665287
 GameObject:
@@ -248,6 +295,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 194665287}
+--- !u!1 &465161082 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 115212, guid: 15be06b8767660046aa928092ac72000, type: 2}
+  m_PrefabInternal: {fileID: 99475766}
 --- !u!1 &512063390
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +374,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!4 &512063395
 Transform:
   m_ObjectHideFlags: 0
@@ -380,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce8f920f2502754cb78e2817ab0480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefPlayer: {fileID: 0}
+  prefPlayer: {fileID: 465161082}
 --- !u!1 &520265126
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +752,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
@@ -2302,7 +2358,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1967288411}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .712974846, y: -.177653447, z: -.0829175785, w: .67322427}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
