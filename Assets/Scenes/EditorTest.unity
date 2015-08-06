@@ -296,6 +296,25 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 400012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
   m_PrefabInternal: {fileID: 882512141}
+--- !u!114 &155120197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155120195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c691f2f110cf2ae4abb6ab989eb9e82a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkFreqMax: 1
+  blinkFreqMin: 4
+  PlayerModel: {fileID: 1805553773}
+  effectsColorStart: {r: .158620819, g: 1, b: 0, a: 0}
+  effectsColorEnd: {r: 1, g: 0, b: 0, a: 0}
+  colorSwapTime: 1
+  emissionOscilation: 0
+  defaultEmission: 5
 --- !u!1 &194665287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,6 +2388,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1 &1805553773 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100180, guid: 612dbe37257f3234cb15a07d554dc12a, type: 3}
+  m_PrefabInternal: {fileID: 128664584}
 --- !u!1 &1822930810
 GameObject:
   m_ObjectHideFlags: 0
