@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Model_InfoCubeMaterial
+  m_Name: Model_TrapBoxMaterial
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c01ccf53d19510548b808595fdc8cb09, type: 3}
+          m_Texture: {fileID: 2800000, guid: 0c25187533e93e346a50cbd373d7d8ed, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -32,13 +32,6 @@ Material:
       data:
         first:
           name: _DetailNormalMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecularTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -87,13 +80,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Detail
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _Bump
         second:
           m_Texture: {fileID: 0}
@@ -104,41 +90,6 @@ Material:
           name: _Ramp
         second:
           m_Texture: {fileID: 2800000, guid: 410b783847e304d49ae532162fd708b5, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _RampTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 4a056241e2722dc46a7262a8e7073fd9, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ToonShade
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Illum
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Cube
-        second:
-          m_Texture: {fileID: 8900000, guid: f3abbdc5936507e459978eae05cca845, type: 2}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -153,11 +104,15 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0
+        second: .720000029
       data:
         first:
           name: _Shininess
-        second: .21655263
+        second: .377000004
+      data:
+        first:
+          name: PixelSnap
+        second: 0
       data:
         first:
           name: _ZWrite
@@ -165,7 +120,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .446999997
+        second: .5
       data:
         first:
           name: _Metallic
@@ -177,7 +132,7 @@ Material:
       data:
         first:
           name: _Parallax
-        second: .0708928555
+        second: .0199999996
       data:
         first:
           name: _OcclusionStrength
@@ -201,15 +156,15 @@ Material:
       data:
         first:
           name: _Outline
-        second: .0910714343
+        second: .155357152
       data:
         first:
           name: _FinalBrightness
-        second: 4
+        second: 7.5
       data:
         first:
           name: _RimPower
-        second: 1
+        second: 6.2589283
       data:
         first:
           name: _RimStrength
@@ -217,15 +172,35 @@ Material:
       data:
         first:
           name: _GlossSize
-        second: .979285717
+        second: 1
       data:
         first:
           name: _AlphaTransparency
         second: 0
       data:
         first:
-          name: _EmissionLM
-        second: .159999996
+          name: _Stencil
+        second: 0
+      data:
+        first:
+          name: _StencilComp
+        second: 8
+      data:
+        first:
+          name: _StencilOp
+        second: 0
+      data:
+        first:
+          name: _StencilReadMask
+        second: 255
+      data:
+        first:
+          name: _StencilWriteMask
+        second: 255
+      data:
+        first:
+          name: _ColorMask
+        second: 15
     m_Colors:
       data:
         first:
@@ -238,11 +213,11 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 0}
       data:
         first:
           name: _Emission
-        second: {r: .507352948, g: .507352948, b: .507352948, a: 0}
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _EmissionColorUI
@@ -254,8 +229,4 @@ Material:
       data:
         first:
           name: _RimColor
-        second: {r: 1, g: 1, b: 1, a: .749019623}
-      data:
-        first:
-          name: _ReflectColor
-        second: {r: 1, g: 1, b: 1, a: .5}
+        second: {r: .25999999, g: .189999998, b: .159999996, a: 0}
