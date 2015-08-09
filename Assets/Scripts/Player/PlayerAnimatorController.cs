@@ -22,10 +22,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 
 
 	private Animator anim;
-	void Start () {
-		anim = gameObject.GetComponent<Animator>();
-		meshRenderer = PlayerModel.GetComponent<SkinnedMeshRenderer>();
 
+	void Start () {
+		anim         = gameObject.GetComponent<Animator>();
+		meshRenderer = PlayerModel.GetComponent<SkinnedMeshRenderer>();
 	}
 	
 	// Update is called once per frame

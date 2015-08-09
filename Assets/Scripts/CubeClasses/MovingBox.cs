@@ -54,7 +54,9 @@ public class MovingBox : BaseBox
 		                                 transform.position.y + coef*direction.y,
 		                                 transform.position.z + coef*direction.z);
 
-		player.transform.position = new Vector3(player.transform.position.x + coef*direction.x,
+		PlayerController playerController = player.GetComponent<PlayerController>();
+
+		playerController.NewPoint = new Vector3(player.transform.position.x + coef*direction.x,
 		                                        player.transform.position.y + coef*direction.y,
 		                                        player.transform.position.z + coef*direction.z);
 	
@@ -70,11 +72,11 @@ public class MovingBox : BaseBox
 		else if(direction == -transform.right)   triggerName = "Left";
 
 		if(triggerName != "") thisAnimator.SetTrigger(triggerName);
-		thisAnimator.Update(Time.deltaTime);
-
 		Animator pAnimator = player.GetComponent<Animator>();
 		pAnimator.SetTrigger("UserAction");
+
 		pAnimator.Update(Time.deltaTime);
+		thisAnimator.Update(Time.deltaTime);
 
 	}
 

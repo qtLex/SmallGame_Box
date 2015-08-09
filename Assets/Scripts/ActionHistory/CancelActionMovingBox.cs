@@ -19,7 +19,9 @@ public class CancelActionMovingBox : BaseCancelAction {
 		                                 transform.position.y + coef*direction.y,
 		                                 transform.position.z + coef*direction.z);
 		
-		player.transform.position = new Vector3(player.transform.position.x + coef*direction.x,
+		PlayerController playerController = player.GetComponent<PlayerController>();
+		
+		playerController.NewPoint = new Vector3(player.transform.position.x + coef*direction.x,
 		                                        player.transform.position.y + coef*direction.y,
 		                                        player.transform.position.z + coef*direction.z);
 

@@ -9,22 +9,35 @@ public class PlayerController : MonoBehaviour {
 
 	private CubeGrid   Grid;
 	private GameObject CurrentBox;
-	private Animator animator;
+	private Animator   animator;
+	private Animator   animatorPose;
+	private float      coefForward;
+	private float      coefRight;
+	private Vector3    newPoint;
+	private bool       useNewPoint;
 
 	#endregion
 
+	public Vector3 NewPoint{
+		set{
+			newPoint    = value;
+			useNewPoint = true;
+			coefForward = 0;
+			coefRight   = 0;
+		}
+	}
+
 	public bool UseAnimationOnCancel = false;
 
-	// Use this for initialization
-	// delete
 	void Awake () 
 	{
-		Grid = GlobalOptions.Grid;
-		animator = GetComponent<Animator>();
+		Grid         = GlobalOptions.Grid;
+		animator     = GetComponent<Animator>();
+		animatorPose = GameObject.Find("PlayerModel_imporded").GetComponent<Animator>();
 	}
 
 	public bool isMoving(){
-		return !animator.GetCurrentAnimatorStateInfo(0).IsName("PStay"); 	
+		return !animator.GetCurrentAnimatorStateInfo(0).IsName("Empty"); 	
 	}
 
 	public bool MovingKeyDown(KeyCode key, bool bakehistory = true){
@@ -37,24 +50,28 @@ public class PlayerController : MonoBehaviour {
 		case KeyCode.UpArrow:
 			direction = transform.forward;
 			animator.SetTrigger("UpArrow");
+			animatorPose.SetTrigger("Forward");
 			if(bakehistory)
 				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Forward, this.gameObject);
 		break;
 		case KeyCode.DownArrow:
 			direction = -transform.forward;
 			animator.SetTrigger("DownArrow");
+			animatorPose.SetTrigger("Back");
 			if(bakehistory)
 				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Back, this.gameObject);
 		break;
 		case KeyCode.LeftArrow:
 			direction = -transform.right;
 			animator.SetTrigger("LeftArrow");
+			animatorPose.SetTrigger("Left");
 			if(bakehistory)
 				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Left, this.gameObject);
 		break;
 		case KeyCode.RightArrow:
 			direction = transform.right;
 			animator.SetTrigger("RightArrow");
+			animatorPose.SetTrigger("Right");
 			if(bakehistory)
 				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Right, this.gameObject);
 		break;
@@ -68,47 +85,62 @@ public class PlayerController : MonoBehaviour {
 		if(Physics.Raycast(transform.position, direction, out hit, Grid.gridSize, layerMask)){
 
 			// выполним поворот
-			float coefForward = -90*Vector3.Dot(direction,transform.forward);
-			float coefRight   = 90*Vector3.Dot(direction,transform.right);
+			coefForward = -90*Vector3.Dot(direction,transform.forward);
+			coefRight   = 90*Vector3.Dot(direction,transform.right);
+			newPoint    = Vector3.zero;
+			useNewPoint = false;
 
-			if(coefForward != 0)
-				transform.Rotate(transform.right, coefForward, Space.World);
+			//if(coefForward != 0)
+			//	transform.Rotate(transform.right, coefForward, Space.World);
 			
-			if(coefRight != 0)
-				transform.Rotate(transform.forward, coefRight, Space.World);
+			//if(coefRight != 0)
+			//	transform.Rotate(transform.forward, coefRight, Space.World);
 
-			if(bakehistory || UseAnimationOnCancel)
+			if(bakehistory || UseAnimationOnCancel){
 				animator.SetTrigger("MoveUp");
+				animatorPose.SetTrigger("Move");
+			}
 
 		}
 		else if(Physics.Raycast(GlobalOptions.CurrentBox.transform.position, direction, out hit, Grid.gridSize, layerMask)){
 
-			transform.position = transform.position + direction*Grid.gridSize;
-			if(bakehistory || UseAnimationOnCancel)
+			newPoint = transform.position + direction*Grid.gridSize; coefForward = 0; coefRight   = 0; useNewPoint = true;
+
+			if(bakehistory || UseAnimationOnCancel){
 				animator.SetTrigger("Move");
+				animatorPose.SetTrigger("Move");
+			}
 
 		}
 		else{
-			Vector3 newPoint = new Vector3(transform.position.x + Grid.gridSize*(-transform.up).x + Grid.gridSize*direction.x,
+			newPoint = new Vector3(transform.position.x + Grid.gridSize*(-transform.up).x + Grid.gridSize*direction.x,
 			                               transform.position.y + Grid.gridSize*(-transform.up).y + Grid.gridSize*direction.y,
 			                               transform.position.z + Grid.gridSize*(-transform.up).z + Grid.gridSize*direction.z);
 			
-			transform.position = newPoint;
-			
-			float coefForward = 90*Vector3.Dot(direction,transform.forward);
-			float coefRight   = -90*Vector3.Dot(direction,transform.right);
-			
-			if(coefForward != 0)
-				transform.Rotate(transform.right, coefForward, Space.World);
-			
-			if(coefRight != 0)
-				transform.Rotate(transform.forward, coefRight, Space.World);
-			if(bakehistory || UseAnimationOnCancel)
+			coefForward = 90*Vector3.Dot(direction,transform.forward);
+			coefRight   = -90*Vector3.Dot(direction,transform.right);
+			useNewPoint = true;
+
+			if(bakehistory || UseAnimationOnCancel){
 				animator.SetTrigger("MoveDown");
+				animatorPose.SetTrigger("Move");
+			}
 		}
 
-		animator.Update(Time.deltaTime);
+		animator.Update(Time.deltaTime); animatorPose.Update(Time.deltaTime);
 
 		return true;
 	}	
+
+	public void DragMainPivot(){
+
+		if(useNewPoint)
+			transform.position = newPoint;
+
+		if(coefForward != 0)
+			transform.Rotate(transform.right, coefForward, Space.World);
+		
+		if(coefRight != 0)
+			transform.Rotate(transform.forward, coefRight, Space.World);
+	}
 }
