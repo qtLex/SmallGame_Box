@@ -1217,11 +1217,8 @@ AnimatorStateMachine:
       first: {fileID: 110735172}
       second: []
   m_StateMachineBehaviours: []
-<<<<<<< HEAD
-  m_AnyStatePosition: {x: 324, y: -108, z: 0}
-=======
   m_AnyStatePosition: {x: 72, y: 24, z: 0}
->>>>>>> newPlayerMove
+
   m_EntryPosition: {x: 72, y: 132, z: 0}
   m_ExitPosition: {x: 72, y: 72, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
