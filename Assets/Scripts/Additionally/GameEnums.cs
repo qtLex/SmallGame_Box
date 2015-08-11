@@ -18,4 +18,9 @@ namespace GameEnums{
 		Spawn
 		// - mors 
 	}
+
+	public enum GameModes{
+		EditMode,
+		PlayMode
+	}
 }
