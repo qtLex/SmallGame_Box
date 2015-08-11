@@ -8,11 +8,11 @@ public class JumpBox : BaseBox, iUseTarget
 
 	public GameObject target;
 
-	private RenderTexture myPortalTexture;
-	private RenderTexture exitPortalTexture;
+	//private RenderTexture myPortalTexture;
+	//private RenderTexture exitPortalTexture;
 
-	public GameObject PortalRendererObject;
-	public Camera PortalCamera;
+	//public GameObject PortalRendererObject;
+	//public Camera PortalCamera;
 
 	private bool _initialized;
 
@@ -25,24 +25,24 @@ public class JumpBox : BaseBox, iUseTarget
 
 		if (_initialized){return;};
 
-		if(!myPortalTexture){
-			myPortalTexture = new RenderTexture(512,512,24);
-		}
-
-		if(target){
-			JumpBox exit = target.GetComponent<JumpBox>();
-			if (!exit){return;};
-			exitPortalTexture = exit.myPortalTexture;
-		}
-
-		if(PortalCamera){
-			PortalCamera.targetTexture = myPortalTexture;
-		}
-
-		if(PortalRendererObject){
-			Renderer thisRenderer = PortalRendererObject.GetComponent<Renderer>();
-			thisRenderer.material.SetTexture("_MainTex", exitPortalTexture);
-		}
+//		if(!myPortalTexture){
+//			myPortalTexture = new RenderTexture(512,512,24);
+//		}
+//
+//		if(target){
+//			JumpBox exit = target.GetComponent<JumpBox>();
+//			if (!exit){return;};
+//			exitPortalTexture = exit.myPortalTexture;
+//		}
+//
+//		if(PortalCamera){
+//			PortalCamera.targetTexture = myPortalTexture;
+//		}
+//
+//		if(PortalRendererObject){
+//			Renderer thisRenderer = PortalRendererObject.GetComponent<Renderer>();
+//			thisRenderer.material.SetTexture("_MainTex", exitPortalTexture);
+//		}
 
 		_initialized = true;
 

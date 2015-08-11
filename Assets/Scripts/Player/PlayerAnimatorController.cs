@@ -10,6 +10,8 @@ public class PlayerAnimatorController : MonoBehaviour {
 
 	// color effects control
 	public GameObject PlayerModel;
+	public GameObject PlayerModelAmimator;
+
 	private SkinnedMeshRenderer meshRenderer;
 	public Color effectsColorStart;
 	public Color effectsColorEnd;
@@ -20,12 +22,18 @@ public class PlayerAnimatorController : MonoBehaviour {
 	public float emissionOscilation = 1.0f;
 	public float defaultEmission = 5.0f;
 
+	private float currentIdleStateTimer = 0.0f;
+	public float IdleStateChangeTime = 10.0f;
 
 	private Animator anim;
+	private Animator modelAnimator;
+	private PlayerController playerController;
 
 	void Start () {
 		anim         = gameObject.GetComponent<Animator>();
 		meshRenderer = PlayerModel.GetComponent<SkinnedMeshRenderer>();
+		modelAnimator = PlayerModelAmimator.GetComponent<Animator>();
+		playerController = GlobalOptions.Player.GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -63,6 +71,23 @@ public class PlayerAnimatorController : MonoBehaviour {
 
 
 		};
+
+		if(modelAnimator && !playerController.isMoving()){
+
+			currentIdleStateTimer += Time.deltaTime;
+
+			if (currentIdleStateTimer >= IdleStateChangeTime){
+				float rnd = Random.Range(0.0f, 100.0f);
+
+				if (rnd > 90.0f){
+					modelAnimator.SetTrigger("Idle1");
+				}else if(rnd > 0.75){
+					modelAnimator.SetTrigger("Idle0");
+				}
+				currentIdleStateTimer = 0.0f;
+			}
+
+		}
 	
 	}
 }
