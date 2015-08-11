@@ -6,10 +6,12 @@ using BoxClasses;
 public class InputAggregator : MonoBehaviour {
 
 	public GameObject prefPlayer;
+	private PlayerController _playerController;
 
 	// Use this for initialization
 	void Start () {
 		GameObject startpoint = GameObject.Find("StartPoint(Clone)");
+		_playerController = GlobalOptions.Player.GetComponent<PlayerController>();
 
 		if(!startpoint)
 			return;
@@ -21,33 +23,60 @@ public class InputAggregator : MonoBehaviour {
 	// Update is called once per frame
 	void Update (){
 
+		// + mors
+		// Изменение режима
+		if(Input.GetKeyUp(KeyCode.F12)){
+			GlobalOptions.SwitchMode();
+		}
+		// - mors
+
+		if (GlobalOptions.isPlayMode){
+			PlayModeControl();
+			return;
+		}
+
+		if (GlobalOptions.isEditMode){
+			EditModeControl();
+			return;
+		}
+	
+	}
+
+	private void PlayModeControl(){
+
 		if(Input.GetKeyDown(KeyCode.UpArrow)
-		        && GlobalOptions.Player != null){
-			GlobalOptions.Player.GetComponent<PlayerController>().MovingKeyDown(KeyCode.UpArrow);
+		   && _playerController != null){
+			_playerController.MovingKeyDown(KeyCode.UpArrow);
 		}
-
+		
 		else if(Input.GetKeyDown(KeyCode.DownArrow)
-		     	&& GlobalOptions.Player != null){
-			GlobalOptions.Player.GetComponent<PlayerController>().MovingKeyDown(KeyCode.DownArrow);
+		        && _playerController != null){
+			_playerController.MovingKeyDown(KeyCode.DownArrow);
 		}
-
+		
 		else if(Input.GetKeyDown(KeyCode.RightArrow)
-		     	&& GlobalOptions.Player != null){
-			GlobalOptions.Player.GetComponent<PlayerController>().MovingKeyDown(KeyCode.RightArrow);
+		        && _playerController != null){
+			_playerController.MovingKeyDown(KeyCode.RightArrow);
 		}
-
+		
 		else if(Input.GetKeyDown(KeyCode.LeftArrow)
-		        && GlobalOptions.Player != null){
-			GlobalOptions.Player.GetComponent<PlayerController>().MovingKeyDown(KeyCode.LeftArrow);
+		        && _playerController != null){
+			_playerController.MovingKeyDown(KeyCode.LeftArrow);
 		}
-
+		
 		else if(Input.GetKeyDown(KeyCode.B))
 			ActionHistory.ActionHistoryManager.CancelLastAction();
-
+		
 		else if(Input.GetKeyDown(KeyCode.Space)
 		        && GlobalOptions.CurrentBox != null){
 			Messenger.Invoke("UserAction", this);
 		}
-	
+		
 	}
+
+	private void EditModeControl(){
+		float s = 1.0f;
+	}
+
 }
+
