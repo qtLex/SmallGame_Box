@@ -10,7 +10,7 @@ public static class GlobalOptions
 	private static DeferredExecution _DeferredExecutionComponent;
 
 	// + mors
-	private static GameEnums.GameModes GameMode;
+	private static GameEnums.GameModes GameMode = GameEnums.GameModes.PlayMode;
 	private static CubeGridEditorGameMode _gameModeEditor;
 	private static GameObject _singleton;
 
@@ -32,8 +32,9 @@ public static class GlobalOptions
 
 	public static void SwitchMode(){
 
-		if(isPlayMode) SetEditMode();
-		if(isEditMode) SetPlayMode();
+		if(isPlayMode){
+			SetEditMode();
+		}else if(isEditMode) SetPlayMode();
 
 	}
 

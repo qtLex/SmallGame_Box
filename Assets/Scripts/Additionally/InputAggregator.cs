@@ -18,6 +18,7 @@ public class InputAggregator : MonoBehaviour {
 
 		GlobalOptions.Player.transform.position = startpoint.transform.position;
 		GlobalOptions.Player.transform.rotation = startpoint.transform.rotation;
+		
 	}
 	
 	// Update is called once per frame
