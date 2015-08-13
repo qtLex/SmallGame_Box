@@ -76,7 +76,18 @@ public class InputAggregator : MonoBehaviour {
 	}
 
 	private void EditModeControl(){
-		float s = 1.0f;
+
+		if(Input.GetKeyDown(KeyCode.Space)){
+			
+			Messenger.Invoke("ShowHideBoxSelection", this);
+
+		}
+		else if(Input.GetKeyUp(KeyCode.Space)){
+
+			Messenger.Invoke("ShowHideBoxSelection", this);
+
+		}
+			
 	}
 
 }

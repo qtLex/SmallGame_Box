@@ -25,6 +25,8 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 	void OnEnable(){
 
+		Start();
+
 		if (!_marker){
 			// Создаем маркер
 			_markerPrefab.transform.localScale = new Vector3(_gridSize, _gridSize, _gridSize);			
