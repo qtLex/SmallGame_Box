@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour {
 
 		Vector3 direction = Vector3.zero;
 
+		Debug.Log("going");
+
 		switch (key){
 		case KeyCode.UpArrow:
 			direction = transform.forward;

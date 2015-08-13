@@ -221,10 +221,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
---- !u!1 &155120195 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
-  m_PrefabInternal: {fileID: 641231193}
 --- !u!1 &194665287
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab1aaba50ce5884e86ebebef9371bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetObject: {fileID: 155120195}
+  TargetObject: {fileID: 441080935}
   VerticalSpeed: 100
   HorisontalSpeed: 50
   ZoomSpeed: 100

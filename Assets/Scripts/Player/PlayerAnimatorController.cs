@@ -4,6 +4,9 @@ using System.Collections;
 public class PlayerAnimatorController : MonoBehaviour {
 
 	// eyes control
+	[Range(1.0f,6.0f)]
+	public float AnimationSpeed = 3.0f;
+
 	public float blinkFreqMax = 1.0f;
 	public float blinkFreqMin = 4.0f;
 	private float blinkCurrentCounter = 0.0f;
@@ -30,10 +33,16 @@ public class PlayerAnimatorController : MonoBehaviour {
 	private PlayerController playerController;
 
 	void Start () {
-		anim         = gameObject.GetComponent<Animator>();
-		meshRenderer = PlayerModel.GetComponent<SkinnedMeshRenderer>();
-		modelAnimator = PlayerModelAmimator.GetComponent<Animator>();
+		anim             = gameObject.GetComponent<Animator>();
+		meshRenderer     = PlayerModel.GetComponent<SkinnedMeshRenderer>();
+		modelAnimator    = PlayerModelAmimator.GetComponent<Animator>();
 		playerController = GlobalOptions.Player.GetComponent<PlayerController>();
+
+		anim.SetFloat("AnimSpeed", AnimationSpeed);
+
+		modelAnimator.SetFloat("IdleAnimSpeed" , AnimationSpeed/6);
+		modelAnimator.SetFloat("AnimSpeed066"  , AnimationSpeed*0.66f);
+		modelAnimator.SetFloat("AnimSpeed198"  , AnimationSpeed*1.98f);
 	}
 	
 	// Update is called once per frame
@@ -80,8 +89,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 				float rnd = Random.Range(0.0f, 100.0f);
 
 				if (rnd > 90.0f){
+					//Debug.Log("Idle1");
 					modelAnimator.SetTrigger("Idle1");
 				}else if(rnd > 0.75){
+					//Debug.Log("Idle0");
 					modelAnimator.SetTrigger("Idle0");
 				}
 				currentIdleStateTimer = 0.0f;
