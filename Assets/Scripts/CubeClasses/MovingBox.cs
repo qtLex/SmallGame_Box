@@ -10,7 +10,12 @@ public class MovingBox : BaseBox
 	public static GameObject FieldPrefab;
 
 	private GameObject FieldInstance;
-	
+	private bool       _isMoving = false;
+
+	public void isMovingFalse(){
+		_isMoving = false;
+	}
+
 	// Use this for initialization
 	void Awake () 
 	{
@@ -75,6 +80,8 @@ public class MovingBox : BaseBox
 		Animator pAnimator = player.GetComponent<Animator>();
 		pAnimator.SetTrigger("UserAction");
 
+		_isMoving = true;
+
 		pAnimator.Update(Time.deltaTime);
 		thisAnimator.Update(Time.deltaTime);
 
@@ -82,11 +89,17 @@ public class MovingBox : BaseBox
 
 	public override void OnRetire(){
 
+		if(_isMoving)
+			return;
+
 		thisAnimator.SetBool("Approach", false);
 
 	}
 
 	public override void OnApproach(){
+
+		if(_isMoving)
+			return;
 
 		thisAnimator.SetBool("Approach", true);
 	

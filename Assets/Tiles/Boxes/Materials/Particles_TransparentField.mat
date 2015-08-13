@@ -21,21 +21,17 @@ Material:
         second:
           m_Texture: {fileID: 2800000, guid: 8218d3f247ca23247ae81fc50eede487, type: 3}
           m_Scale: {x: .125, y: .5}
-<<<<<<< HEAD
-          m_Offset: {x: .25, y: 0}
-=======
-          m_Offset: {x: .875, y: 0}
->>>>>>> 20cc13306dae5235b75801bbb515c690350e9c36
+          m_Offset: {x: .5, y: .5}
       data:
         first:
-          name: _Ramp
+          name: _Bump
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Bump
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -47,13 +43,14 @@ Material:
         second: .433928549
       data:
         first:
-<<<<<<< HEAD
           name: _InvFade
         second: 1.85428572
       data:
         first:
-=======
->>>>>>> 20cc13306dae5235b75801bbb515c690350e9c36
+          name: <noninit>
+        second: 1.85428572
+      data:
+        first:
           name: _Outline
         second: 0
       data:
@@ -76,10 +73,6 @@ Material:
         first:
           name: _AlphaTransparency
         second: 0
-      data:
-        first:
-          name: _InvFade
-        second: 1.85428572
     m_Colors:
       data:
         first:
@@ -87,22 +80,13 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-<<<<<<< HEAD
-          name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _RimColor
-        second: {r: .25999999, g: .189999998, b: .159999996, a: 0}
-=======
-          name: _RimColor
-        second: {r: .25999999, g: .189999998, b: .159999996, a: 0}
-      data:
-        first:
           name: _TintColor
-        second: {r: .544117689, g: .544117689, b: .544117689, a: .501960814}
->>>>>>> 20cc13306dae5235b75801bbb515c690350e9c36
+        second: {r: .5, g: .5, b: .5, a: .5}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _RimColor
+        second: {r: .25999999, g: .189999998, b: .159999996, a: 0}
