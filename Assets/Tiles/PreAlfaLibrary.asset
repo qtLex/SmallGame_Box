@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Name: PreAlfaLibrary
   m_EditorClassIdentifier: 
   CubeList:
-  - Key: 2524c462-ad3b-4235-9bf6-871bf23d832f
+  - Key: 56a47e76-cd96-436a-9500-69de2af70032
     Object: {fileID: 100002, guid: 65fb60dea6e5c1f4bb16d0301450ad22, type: 2}
-  - Key: 7823cd0b-1fa4-43e5-833a-b5987f8bc0fb
+  - Key: 2cfa9706-d83e-411b-90ec-ce2e8ee3184a
     Object: {fileID: 100022, guid: d7c030a7414f2f44c9c36e68a110f0f7, type: 2}
-  - Key: 60b2e12b-b01e-4f96-b975-bfb3151e5ed6
-    Object: {fileID: 137018, guid: 94d39ef740feecc4990af1826c6af863, type: 2}
-  - Key: 57b51ad2-983c-4074-b71b-ca64af479650
+  - Key: c591467a-80ed-4b97-9f27-1295a68eb405
     Object: {fileID: 100002, guid: c1f5dd74944833b4f9a633d7da4429f3, type: 2}
-  - Key: 4d5a2e77-ecff-4de4-b2c2-f3d0ee81e41f
+  - Key: 3521d3b4-f920-4acb-a135-18a8165efe6f
     Object: {fileID: 100002, guid: ac4e756834d68f345a16dc722f81ddd6, type: 2}
-  - Key: ce933821-c002-46ff-adca-a7231008d7bc
+  - Key: 84af309b-8f1a-4381-8877-da84744da7c5
     Object: {fileID: 100004, guid: 65696d05ec8cc844a9b40e2f920b37bc, type: 2}
+  - Key: ac2950c6-94aa-48b7-ae8e-c779d3a796c8
+    Object: {fileID: 137018, guid: 94d39ef740feecc4990af1826c6af863, type: 2}

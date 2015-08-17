@@ -13,8 +13,26 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 	private CubeLibrary _library;
 	private float _gridSize;
 	private EditorModes _editorMode;
+	private bool _traceMouse = true;
 
-	// Use this for initialization
+	public CubeLibrary Library{
+		get {return _library;}
+	}
+
+	public GameObject CurrentObject{
+		get {return _currentObject;}
+		set {
+			if (value){
+				_currentObject = value;
+			}
+		}
+	}
+
+	public bool TraceMouse{
+		set{_traceMouse = value;}
+		get{return _traceMouse;}
+	}
+
 	void Start () {
 
 		_grid     = GlobalOptions.Grid;
@@ -33,8 +51,6 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 			_marker = Instantiate(_markerPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0)) as GameObject;
 			_marker.name = "MARKER";
 			DestroyImmediate(_marker.GetComponent<Collider>());
-//			MeshRenderer markerRenderer = _marker.GetComponent<MeshRenderer>();
-//			markerRenderer.enabled = true;
 
 		}
 
@@ -49,8 +65,10 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		_marker.transform.position = GetMarkerPosition();
-
+		if(_traceMouse){
+			_marker.transform.position = GetMarkerPosition();
+		}
+	
 	}
 
 	Vector3 GetMarkerPosition(){

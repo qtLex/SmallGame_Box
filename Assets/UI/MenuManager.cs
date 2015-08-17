@@ -53,7 +53,6 @@ public class MenuManager : MonoBehaviour {
 
 	public void ShowMenu(int index, bool Invert = false){
 
-
 		if (index > MenuCollection.Length - 1) return;
 
 		GameObject _obj = MenuCollection[index];

@@ -21,13 +21,15 @@ public static class GlobalOptions
 		return _singleton;
 	}
 
-	private static void GetEditorComponent(){
+	public static CubeGridEditorGameMode GetEditorComponent(){
 
 		if (!_gameModeEditor){
 			if(!_singleton)	GetGlobalSingleton();
 			_gameModeEditor = _singleton.GetComponent<CubeGridEditorGameMode>();
 		}
-		
+
+		return _gameModeEditor;
+
 	}
 
 	public static void SwitchMode(){
