@@ -417,12 +417,12 @@ public class CubeGridEditor : Editor {
 		scrollPosCubeGrid = GUILayout.BeginScrollView(scrollPosCubeGrid, true, true);
 		
 		Texture[] images = m_Library.GetImageList();
-		System.Collections.Generic.KeyValuePair<string, GameObject>[] objects = m_Library.GetObjectsAndGuids();
+		//System.Collections.Generic.KeyValuePair<string, GameObject>[] objects = m_Library.GetObjectsAndGuids();
 		
 		selectedCubeIndex = GUILayout.SelectionGrid(selectedCubeIndex, images, 2);
-		m_Instance.currentPrefab = objects[selectedCubeIndex].Value;
-		m_Instance.currentPrefabGuid = objects[selectedCubeIndex].Key;
-
+		//m_Instance.currentPrefab = objects[selectedCubeIndex].Value;
+		//m_Instance.currentPrefabGuid = objects[selectedCubeIndex].Key;
+		m_Instance.SelectedPrefabIndex = selectedCubeIndex;
 		GUILayout.EndScrollView();
 	}
 

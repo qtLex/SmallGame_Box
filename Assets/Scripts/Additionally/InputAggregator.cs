@@ -87,6 +87,14 @@ public class InputAggregator : MonoBehaviour {
 			Messenger.Invoke("ShowHideBoxSelection", this);
 
 		}
+
+		if (Input.GetMouseButtonUp(0)){
+			Messenger.Invoke("LeftMouseUp", this);
+		}else if(Input.GetMouseButtonDown(0)){
+			Messenger.Invoke("LeftMouseDown", this);
+		}else if(Input.GetMouseButton(0)){
+			Messenger.Invoke("LeftMouseHold", this);
+		}
 			
 	}
 

@@ -7,10 +7,26 @@ public class CubeGridBase : ScriptableObject
 
   public GameObject currentPrefab;
   public string currentPrefabGuid;
+  private int currentPrefabIndex;
   public CubeLibrary m_CubeLibrary;
   public float gridSize = 10.0f;
   private GameObject Parent;
   public Dictionary<string, GameObject> Elements = new Dictionary<string, GameObject>();
+
+	public int SelectedPrefabIndex{
+		set{
+			GameObject go = m_CubeLibrary.GetGameObjectByIndex(value);
+			if(go){
+				currentPrefab = go;
+				currentPrefabGuid = m_CubeLibrary.GetGUIDByObject(currentPrefab);
+				currentPrefabIndex = value;
+			}
+
+		}
+		get{
+			return currentPrefabIndex;
+		}
+	}
 
   private Vector3 decimateCoords(Vector3 coords, out string key)
   {

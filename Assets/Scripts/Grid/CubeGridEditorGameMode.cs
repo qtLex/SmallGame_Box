@@ -1,22 +1,38 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class CubeGridEditorGameMode : MonoBehaviour {
 
-	private enum EditorModes{Add,Delete};
+	private enum EditorModes{Add,Delete,Move,Connect};
 
 	public GameObject _markerPrefab;
 
 	private CubeGrid _grid;
 	private GameObject _marker;
+	private Vector3 _markerPosition;
 	private GameObject _currentObject;
 	private CubeLibrary _library;
 	private float _gridSize;
 	private EditorModes _editorMode;
 	private bool _traceMouse = true;
 
+
+	public void SetActiveCube(){
+
+	}
+	public void SetAddMode() {_editorMode = EditorModes.Add;}
+	public void SetDeleteMode() {_editorMode = EditorModes.Delete;}
+	public void SetMoveMode() {_editorMode = EditorModes.Move;}
+	public void SetConnectMode() {_editorMode = EditorModes.Connect;}
+
 	public CubeLibrary Library{
 		get {return _library;}
+	}
+
+	public int BrushObjectIndex{
+		set{_grid.SelectedPrefabIndex = value;}
+		get{return _grid.SelectedPrefabIndex;}
 	}
 
 	public GameObject CurrentObject{
@@ -39,6 +55,8 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 		_library  = _grid.m_CubeLibrary;
 		_gridSize = _grid.gridSize;
 
+
+
 	}
 
 	void OnEnable(){
@@ -54,21 +72,26 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 		}
 
+		// Events
+		Messenger.AddListener("LeftMouseUp", OnMouseUp);
+
 	}
 
 	void OnDisable(){
 
+		// Events
+		Messenger.RemoveListener("LeftMouseUp", OnMouseUp);
 		DestroyImmediate(_marker);
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 		if(_traceMouse){
-			_marker.transform.position = GetMarkerPosition();
+			_markerPosition = GetMarkerPosition();
+			_marker.transform.position = _markerPosition;
 		}
-	
+
 	}
 
 	Vector3 GetMarkerPosition(){
@@ -101,30 +124,52 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 			float distance = 0; 
 			
 			if (hPlane.Raycast(ray, out distance)){
-				
 
 				Vector3 pointOnXY = ray.GetPoint(distance);																			
 				
-				intersectionPoint  = new Vector3(pointOnXY.x, pointOnXY.y, pointOnXY.z);
+				intersectionPoint  = new Vector3(pointOnXY.x - _gridSize/2, pointOnXY.y - _gridSize/2, pointOnXY.z - _gridSize/2);
 				
-				intersectionPoint.x = intersectionPoint.x - intersectionPoint.x % _gridSize;
-				intersectionPoint.y = intersectionPoint.y - intersectionPoint.y % _gridSize;
-				intersectionPoint.z = intersectionPoint.z - intersectionPoint.z % _gridSize;
-				
+				intersectionPoint.x = intersectionPoint.x - intersectionPoint.x % _gridSize ;
+				intersectionPoint.y = intersectionPoint.y - intersectionPoint.y % _gridSize ;
+				intersectionPoint.z = intersectionPoint.z - intersectionPoint.z % _gridSize ;
+
+				GameObject debug_sphere = GameObject.Find("debug_Sphere");
+				debug_sphere.transform.position = pointOnXY;
+
+				GameObject debug_sphere2 = GameObject.Find("debug_Sphere2");
+				debug_sphere2.transform.position = intersectionPoint;
+
 				if (Physics.Raycast(pointOnXY, intersectionPoint, out hitInfo, Vector3.Distance(pointOnXY, intersectionPoint))){
-					
+				
+				
 					intersectionPoint = hitInfo.point;
-					
+
 					intersectionPoint.x = intersectionPoint.x - intersectionPoint.x % _gridSize;
 					intersectionPoint.y = intersectionPoint.y - intersectionPoint.y % _gridSize;
 					intersectionPoint.z = intersectionPoint.z - intersectionPoint.z % _gridSize;									   
-					
+
 				}
 			}
 		}
+		
 
 		return intersectionPoint;
 
 	} 
+
+	private void OnMouseUp(object sender, EventArgs evArgs){
+
+		if(!_traceMouse){return;};
+
+		switch (_editorMode){
+			case EditorModes.Add:{
+				GameObject lastCube;
+				_grid.CreateCubeAt(_markerPosition, out lastCube);
+				break;
+			}
+
+		}
+
+	}
 
 }

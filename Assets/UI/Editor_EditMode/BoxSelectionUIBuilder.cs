@@ -56,7 +56,6 @@ public class BoxSelectionUIBuilder : MonoBehaviour {
 				Image.type = Image.Type.Simple;
 			}
 
-
 			_index ++;
 		}
 
