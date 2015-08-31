@@ -56,4 +56,9 @@ public class EditorFunctionsUIBuilder : MonoBehaviour {
 
 	}
 
+	public void OnDisable(){
+
+		_editor.TraceMouse = true;
+	}
+
 }

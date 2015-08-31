@@ -74,5 +74,12 @@ public class BoxSelectionUIBuilder : MonoBehaviour {
 		
 	}
 
+	public void OnDisable(){
+
+		_editor.TraceMouse = true;
+
+	}
+
+
 
 }

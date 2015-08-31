@@ -26,9 +26,9 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void Start () {
-		CubeGridSingletonObject sing = FindObjectOfType<CubeGridSingletonObject>() as CubeGridSingletonObject;
-		if(sing != null){
-			_grid = sing.Grid;
+
+		if(!_grid){
+			_grid = GlobalOptions.Grid;
 		}
 
 		RefreshLevelList(!UseDefaultFolder ? LevelFolder : Application.dataPath+"/Levels");
@@ -80,33 +80,29 @@ public class LevelManager : MonoBehaviour {
 
 	public void LoadByIndex(int _index){
 
-		if (_grid == null){
-			CubeGridSingletonObject sing = FindObjectOfType<CubeGridSingletonObject>() as CubeGridSingletonObject;
-			if(sing != null){
-				_grid = sing.Grid;
-			}
+		if(!_grid){
+			_grid = GlobalOptions.Grid;
 		}
 		
 		CurrentLevel = LevelList[_index].path;
 
 		_grid.ClearDictionary();
 		_grid = CubeGridXML.ToGrid(CurrentLevel);
+		GlobalOptions.Grid = _grid;
 
 	}
 
 	public void LoadByPath(string _path){
 		
-		if (_grid == null){
-			CubeGridSingletonObject sing = FindObjectOfType<CubeGridSingletonObject>() as CubeGridSingletonObject;
-			if(sing != null){
-				_grid = sing.Grid;
-			}
+		if(!_grid){
+			_grid = GlobalOptions.Grid;
 		}
 
 		CurrentLevel = _path;
 
 		_grid.ClearDictionary();
 		_grid = CubeGridXML.ToGrid(_path);
+		GlobalOptions.Grid = _grid;
 		
 	}
 

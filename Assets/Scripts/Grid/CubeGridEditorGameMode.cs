@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CubeGridEditorGameMode : MonoBehaviour {
 
-	private enum EditorModes{Add,Delete,Move,Connect};
+	private enum EditorModes{Add,Delete,Move,Connect,Target};
 
 	public GameObject _markerPrefab;
 
@@ -15,16 +15,27 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 	private CubeLibrary _library;
 	private float _gridSize;
 	private EditorModes _editorMode;
+	private EditorModes _previousEditorMode;
 	private bool _traceMouse = true;
+	private GameObject _selectedObject;
 
+
+	private EditorModes EditorMode{
+		set{_previousEditorMode = _editorMode; _editorMode = value;}
+		get{return _editorMode;}
+	}
+
+	private EditorModes PreviousEditorMode{
+		get{return _previousEditorMode;}
+	}
 
 	public void SetActiveCube(){
 
 	}
-	public void SetAddMode() {_editorMode = EditorModes.Add;}
-	public void SetDeleteMode() {_editorMode = EditorModes.Delete;}
-	public void SetMoveMode() {_editorMode = EditorModes.Move;}
-	public void SetConnectMode() {_editorMode = EditorModes.Connect;}
+	public void SetAddMode() {EditorMode = EditorModes.Add;}
+	public void SetDeleteMode() {EditorMode = EditorModes.Delete;}
+	public void SetMoveMode() {EditorMode = EditorModes.Move;}
+	public void SetConnectMode() {EditorMode = EditorModes.Connect;}
 
 	public CubeLibrary Library{
 		get {return _library;}
@@ -54,9 +65,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 		_grid     = GlobalOptions.Grid;
 		_library  = _grid.m_CubeLibrary;
 		_gridSize = _grid.gridSize;
-
-
-
+		
 	}
 
 	void OnEnable(){
@@ -74,6 +83,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 		// Events
 		Messenger.AddListener("LeftMouseUp", OnMouseUp);
+		Messenger.AddListener("LeftMouseDown", OnMouseDown);
 
 	}
 
@@ -81,6 +91,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 		// Events
 		Messenger.RemoveListener("LeftMouseUp", OnMouseUp);
+		Messenger.RemoveListener("LeftMouseDown", OnMouseDown);
 		DestroyImmediate(_marker);
 
 	}
@@ -92,6 +103,45 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 			_marker.transform.position = _markerPosition;
 		}
 
+		ProcessTargetMode();
+
+	}
+
+	private void ProcessTargetMode(){
+		if (EditorMode != EditorModes.Target
+		    || !_selectedObject) return;
+
+
+
+	}
+
+	private void DrawParabola(){
+
+		int Steps = 5;
+
+		for(int i = 1; i<=Steps; i++)
+
+	}
+
+	private Vector3 SampleParabola( Vector3 start, Vector3 end, float height, float t ) {
+		float parabolicT = t * 2 - 1;
+		if ( Mathf.Abs( start.y - end.y ) < 0.1f ) {
+			//start and end are roughly level, pretend they are - simpler solution with less steps
+			Vector3 travelDirection = end - start;
+			Vector3 result = start + t * travelDirection;
+			result.y += ( -parabolicT * parabolicT + 1 ) * height;
+			return result;
+		} else {
+			//start and end are not level, gets more complicated
+			Vector3 travelDirection = end - start;
+			Vector3 levelDirecteion = end - new Vector3( start.x, end.y, start.z );
+			Vector3 right = Vector3.Cross( travelDirection, levelDirecteion );
+			Vector3 up = Vector3.Cross( right, travelDirection );
+			if ( end.y > start.y ) up = -up;
+			Vector3 result = start + t * travelDirection;
+			result += ( ( -parabolicT * parabolicT + 1 ) * height ) * up.normalized;
+			return result;
+		}
 	}
 
 	Vector3 GetMarkerPosition(){
@@ -101,22 +151,29 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		
 		if (Physics.Raycast(ray, out hitInfo)){
-			
-			if(_editorMode == EditorModes.Add){
-				
-				Vector3 pointOnCollider = hitInfo.transform.position + hitInfo.normal * _gridSize;
-				intersectionPoint = pointOnCollider;										
-				
-			}else{
-				
-				_currentObject = hitInfo.transform.gameObject;
-				intersectionPoint = hitInfo.transform.position;
+
+			switch (EditorMode){
+				case EditorModes.Add:{
+					
+						Vector3 pointOnCollider = hitInfo.transform.position + hitInfo.normal * _gridSize;
+						intersectionPoint = pointOnCollider;										
+						break;
+					}	
+
+				case EditorModes.Delete: 
+				case EditorModes.Connect:
+				case EditorModes.Move:
+					{				
+						_currentObject = hitInfo.transform.gameObject;
+						intersectionPoint = hitInfo.transform.position;
+						break;
+					}
 				
 			}
 			
-			intersectionPoint.x = intersectionPoint.x - intersectionPoint.x % _gridSize;
-			intersectionPoint.y = intersectionPoint.y - intersectionPoint.y % _gridSize;
-			intersectionPoint.z = intersectionPoint.z - intersectionPoint.z % _gridSize;
+			intersectionPoint.x = Mathf.Round(intersectionPoint.x / _gridSize) * _gridSize;
+			intersectionPoint.y = Mathf.Round(intersectionPoint.y / _gridSize) * _gridSize;
+			intersectionPoint.z = Mathf.Round(intersectionPoint.z / _gridSize) * _gridSize;
 			
 		}else{
 			
@@ -127,29 +184,13 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 				Vector3 pointOnXY = ray.GetPoint(distance);																			
 				
-				intersectionPoint  = new Vector3(pointOnXY.x - _gridSize/2, pointOnXY.y - _gridSize/2, pointOnXY.z - _gridSize/2);
+				intersectionPoint  = new Vector3(pointOnXY.x, pointOnXY.y, pointOnXY.z);
 				
-				intersectionPoint.x = intersectionPoint.x - intersectionPoint.x % _gridSize ;
-				intersectionPoint.y = intersectionPoint.y - intersectionPoint.y % _gridSize ;
-				intersectionPoint.z = intersectionPoint.z - intersectionPoint.z % _gridSize ;
-
-				GameObject debug_sphere = GameObject.Find("debug_Sphere");
-				debug_sphere.transform.position = pointOnXY;
-
-				GameObject debug_sphere2 = GameObject.Find("debug_Sphere2");
-				debug_sphere2.transform.position = intersectionPoint;
-
-				if (Physics.Raycast(pointOnXY, intersectionPoint, out hitInfo, Vector3.Distance(pointOnXY, intersectionPoint))){
-				
-				
-					intersectionPoint = hitInfo.point;
-
-					intersectionPoint.x = intersectionPoint.x - intersectionPoint.x % _gridSize;
-					intersectionPoint.y = intersectionPoint.y - intersectionPoint.y % _gridSize;
-					intersectionPoint.z = intersectionPoint.z - intersectionPoint.z % _gridSize;									   
+				intersectionPoint.x = Mathf.Round(intersectionPoint.x / _gridSize) * _gridSize;
+				intersectionPoint.y = Mathf.Round(intersectionPoint.y / _gridSize) * _gridSize;
+				intersectionPoint.z = Mathf.Round(intersectionPoint.z / _gridSize) * _gridSize;
 
 				}
-			}
 		}
 		
 
@@ -161,14 +202,40 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 		if(!_traceMouse){return;};
 
-		switch (_editorMode){
+		switch (EditorMode){
 			case EditorModes.Add:{
 				GameObject lastCube;
 				_grid.CreateCubeAt(_markerPosition, out lastCube);
 				break;
 			}
+			case EditorModes.Delete:{
+				_grid.DeleteCubeAt(_markerPosition);
+				break;
+			}
 
 		}
+
+	}
+
+	private void OnMouseDown(object sender, EventArgs evArgs){
+			
+			if(!_traceMouse){return;};
+			
+			switch (EditorMode){
+			case EditorModes.Move:{
+				_selectedObject = _grid.GetCubeAt(_markerPosition);
+				EditorMode = EditorModes.Target;
+				_marker.gameObject.SetActive(false);
+				break;
+			}
+			case EditorModes.Connect:{
+				_selectedObject = _grid.GetCubeAt(_markerPosition);
+				EditorMode = EditorModes.Target;
+				break;
+			}
+				
+			}
+
 
 	}
 

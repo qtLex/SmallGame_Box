@@ -93,6 +93,9 @@ public static class GlobalOptions
 
 			return _Grid;
 		}
+		set{
+			_Grid = value;
+		}
 	}
 
 	public static DeferredExecution DeferredExecutionComponent{

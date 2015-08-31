@@ -210,7 +210,6 @@ public class CubeGridXML{
 			targetObj.comp.SetTarget(_grid.GetCubeAt(targetObj.targetPos));
 		}
 
-
 		return _grid;
 
 	}
