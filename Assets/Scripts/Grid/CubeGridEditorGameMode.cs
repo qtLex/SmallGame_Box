@@ -6,7 +6,9 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 	private enum EditorModes{Add,Delete,Move,Connect,Target};
 
-	public GameObject _markerPrefab;
+	public GameObject MarkerPrefab;
+	public GameObject TargetLine;
+	public int TargetLineSteps = 10;
 
 	private CubeGrid _grid;
 	private GameObject _marker;
@@ -18,7 +20,8 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 	private EditorModes _previousEditorMode;
 	private bool _traceMouse = true;
 	private GameObject _selectedObject;
-
+	private GameObject _targetLine;
+	private int _targetLineSteps = 0;
 
 	private EditorModes EditorMode{
 		set{_previousEditorMode = _editorMode; _editorMode = value;}
@@ -74,25 +77,27 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 		if (!_marker){
 			// Создаем маркер
-			_markerPrefab.transform.localScale = new Vector3(_gridSize, _gridSize, _gridSize);			
-			_marker = Instantiate(_markerPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0)) as GameObject;
+			MarkerPrefab.transform.localScale = new Vector3(_gridSize, _gridSize, _gridSize);			
+			_marker = Instantiate(MarkerPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0)) as GameObject;
 			_marker.name = "MARKER";
 			DestroyImmediate(_marker.GetComponent<Collider>());
 
 		}
 
 		// Events
-		Messenger.AddListener("LeftMouseUp", OnMouseUp);
-		Messenger.AddListener("LeftMouseDown", OnMouseDown);
-
+		Messenger.AddListener("MouseUp", OnMouseUp);
+		Messenger.AddListener("MouseDown", OnMouseDown);
+		
 	}
 
 	void OnDisable(){
 
 		// Events
-		Messenger.RemoveListener("LeftMouseUp", OnMouseUp);
-		Messenger.RemoveListener("LeftMouseDown", OnMouseDown);
+		Messenger.RemoveListener("MouseUp", OnMouseUp);
+		Messenger.RemoveListener("MouseDown", OnMouseDown);
+
 		DestroyImmediate(_marker);
+		DestroyImmediate(_targetLine);
 
 	}
 
@@ -109,22 +114,64 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 	private void ProcessTargetMode(){
 		if (EditorMode != EditorModes.Target
-		    || !_selectedObject) return;
+		    || !_selectedObject){
+			if (_targetLine){
+				GameObject.DestroyImmediate(_targetLine);
+			}
+			return;
+		}
+
+		DrawParabola();
 
 
+	}
+
+	private void ProcessTargetClick(){
+
+		switch(PreviousEditorMode){
+			case EditorModes.Move:{
+				_grid.MoveCube(_selectedObject.transform.position, _markerPosition);
+				break;
+			}
+			case EditorModes.Connect:{
+				BoxClasses.BaseBox component = _selectedObject.GetComponentInChildren<BoxClasses.BaseBox>();
+				if (component.CanBeConnected()){
+					GameObject targetObject = _grid.GetCubeAt(_markerPosition);
+					component.ConnectTo(targetObject);
+				}
+				break;
+			}
+
+		}
+
+		EditorMode = PreviousEditorMode;
 
 	}
 
 	private void DrawParabola(){
+		
+		if (!_targetLine){
+			_targetLine = GameObject.Instantiate<GameObject>(TargetLine);
+		}
 
-		int Steps = 5;
+		LineRenderer lineRenderer = _targetLine.GetComponent<LineRenderer>();
+		//if (_targetLineSteps != TargetLineSteps + 1){
+			_targetLineSteps = TargetLineSteps + 1;
+			lineRenderer.SetVertexCount(_targetLineSteps + 1);
+			lineRenderer.SetWidth(_gridSize/5.0f, _gridSize / 10.0f);
+		//}
 
-		for(int i = 1; i<=Steps; i++)
+		for(int i = 0; i <=_targetLineSteps; i++){
+			Vector3 lineVertex = SampleParabola(_selectedObject.transform.position, _markerPosition, _gridSize * 2.0f, (float)i / _targetLineSteps);
+			lineRenderer.SetPosition(i, lineVertex);
+		}
 
 	}
 
 	private Vector3 SampleParabola( Vector3 start, Vector3 end, float height, float t ) {
+
 		float parabolicT = t * 2 - 1;
+
 		if ( Mathf.Abs( start.y - end.y ) < 0.1f ) {
 			//start and end are roughly level, pretend they are - simpler solution with less steps
 			Vector3 travelDirection = end - start;
@@ -134,14 +181,15 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 		} else {
 			//start and end are not level, gets more complicated
 			Vector3 travelDirection = end - start;
-			Vector3 levelDirecteion = end - new Vector3( start.x, end.y, start.z );
-			Vector3 right = Vector3.Cross( travelDirection, levelDirecteion );
-			Vector3 up = Vector3.Cross( right, travelDirection );
+			Vector3 levelDirection = end - new Vector3( start.x, end.y, start.z );
+			Vector3 right = Vector3.Cross( travelDirection, levelDirection );
+			Vector3 up = Vector3.Cross(right, levelDirection);
 			if ( end.y > start.y ) up = -up;
 			Vector3 result = start + t * travelDirection;
 			result += ( ( -parabolicT * parabolicT + 1 ) * height ) * up.normalized;
 			return result;
 		}
+
 	}
 
 	Vector3 GetMarkerPosition(){
@@ -153,7 +201,24 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 		if (Physics.Raycast(ray, out hitInfo)){
 
 			switch (EditorMode){
+				case EditorModes.Target:{
+
+					switch(PreviousEditorMode){
+						case EditorModes.Move:{
+							Vector3 pointOnCollider = hitInfo.transform.position + hitInfo.normal * _gridSize;
+							intersectionPoint = pointOnCollider;										
+							break;
+						}
+						case EditorModes.Connect:{
+							_currentObject = hitInfo.transform.gameObject;
+							intersectionPoint = hitInfo.transform.position;
+							break;
+						}
+					}
+				break;
+				}
 				case EditorModes.Add:{
+
 					
 						Vector3 pointOnCollider = hitInfo.transform.position + hitInfo.normal * _gridSize;
 						intersectionPoint = pointOnCollider;										
@@ -200,41 +265,55 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 	private void OnMouseUp(object sender, EventArgs evArgs){
 
+		GlobalOptions.MouseButtonsEventArgs eventArguments = null;
 		if(!_traceMouse){return;};
+		if(evArgs != null) eventArguments = (GlobalOptions.MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
 
-		switch (EditorMode){
-			case EditorModes.Add:{
-				GameObject lastCube;
-				_grid.CreateCubeAt(_markerPosition, out lastCube);
+		if(eventArguments.Button == KeyCode.Mouse0){
+
+			switch (EditorMode){
+				case EditorModes.Add:{
+					GameObject lastCube;
+					_grid.CreateCubeAt(_markerPosition, out lastCube);
+					break;
+				}
+				case EditorModes.Delete:{
+					_grid.DeleteCubeAt(_markerPosition);
+					break;
+				}
+				case EditorModes.Move:
+				case EditorModes.Connect:{
+					EditorMode = EditorModes.Target;
+					_selectedObject = _grid.GetCubeAt(_markerPosition);
+					break;
+				}			
+				case EditorModes.Target:{
+					ProcessTargetClick();
 				break;
+				}
+							
 			}
-			case EditorModes.Delete:{
-				_grid.DeleteCubeAt(_markerPosition);
-				break;
+
+		}else if(eventArguments.Button == KeyCode.Mouse1){
+
+			switch (EditorMode){
+				case EditorModes.Target:{
+					EditorMode = PreviousEditorMode;
+					break;
+				}				
 			}
 
 		}
+
 
 	}
 
 	private void OnMouseDown(object sender, EventArgs evArgs){
 			
+		GlobalOptions.MouseButtonsEventArgs eventArguments = null;
 			if(!_traceMouse){return;};
+			if(evArgs != null) eventArguments = (GlobalOptions.MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
 			
-			switch (EditorMode){
-			case EditorModes.Move:{
-				_selectedObject = _grid.GetCubeAt(_markerPosition);
-				EditorMode = EditorModes.Target;
-				_marker.gameObject.SetActive(false);
-				break;
-			}
-			case EditorModes.Connect:{
-				_selectedObject = _grid.GetCubeAt(_markerPosition);
-				EditorMode = EditorModes.Target;
-				break;
-			}
-				
-			}
 
 
 	}

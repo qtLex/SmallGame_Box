@@ -13,7 +13,7 @@ public class CubeGridBase : ScriptableObject
   private GameObject Parent;
   public Dictionary<string, GameObject> Elements = new Dictionary<string, GameObject>();
 
-	public int SelectedPrefabIndex{
+  public int SelectedPrefabIndex{
 		set{
 			GameObject go = m_CubeLibrary.GetGameObjectByIndex(value);
 			if(go){
@@ -26,7 +26,7 @@ public class CubeGridBase : ScriptableObject
 		get{
 			return currentPrefabIndex;
 		}
-	}
+  }
 
   private Vector3 decimateCoords(Vector3 coords, out string key)
   {
@@ -41,6 +41,14 @@ public class CubeGridBase : ScriptableObject
         
     return  result;
         
+  }
+
+  public bool CreateCubeAt(Vector3 coords){
+
+		GameObject temp;
+		bool result = CreateCubeAt(coords, out temp);
+		temp = null;
+		return result;
   }
 
   public bool CreateCubeAt(Vector3 coords, out GameObject cube)
@@ -89,8 +97,8 @@ public class CubeGridBase : ScriptableObject
         
   }
     
-  public bool DeleteCubeAt(Vector3 coords)
-  {
+  	public bool DeleteCubeAt(Vector3 coords)
+  	{
         
     string newKey = "";
     decimateCoords(coords, out newKey);
@@ -108,10 +116,51 @@ public class CubeGridBase : ScriptableObject
         {
           return false;
         }
-  }
+  	}
+
+	// Перемещает куб с одной из позиций или свапает кубы в обеих позициях
+	//
+	public bool MoveCube(Vector3 from, Vector3 to){
+		
+		string key_from, key_to;
+		GameObject first,second;
+		Vector3 dec_from = decimateCoords(from, out key_from);
+		Vector3 dec_to   = decimateCoords(to, out key_to);
+
+		if(!Elements.TryGetValue(key_from, out first) &&
+		   !Elements.TryGetValue(key_to, out second))
+			{return false;}
+	
+		if(first && !second){
+
+			Elements.Remove(key_from);
+			Elements.Add(key_to, first);
+			first.transform.position = dec_to;
+
+		}else if (!first && second){
+
+			Elements.Remove(key_to);
+			Elements.Add(key_from, second);
+			second.transform.position = dec_from;
+
+		}else if(first && second){
+
+			Elements.Remove(key_from);
+			Elements.Remove(key_to);
+
+			Elements.Add(key_from, second);
+			Elements.Add(key_to, first);
+
+			second.transform.position = dec_from;
+			first.transform.position = dec_to;
+		
+		}
+		
+		return true;
+	}
   
-    public GameObject GetCubeAt(Vector3 coords)
-    {
+   	public GameObject GetCubeAt(Vector3 coords)
+   	{
 		string key = "";
 		decimateCoords(coords, out key);
 		GameObject existingCube;
@@ -119,10 +168,10 @@ public class CubeGridBase : ScriptableObject
 		Elements.TryGetValue(key, out existingCube);
 
 		return existingCube;
-    }
+   	}
 
-    public void ClearDictionary()
-    {
+   	public void ClearDictionary()
+   	{
 
       foreach (GameObject _gameObject in Elements.Values)
         {

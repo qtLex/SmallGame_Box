@@ -7,13 +7,6 @@ public class JumpBox : BaseBox, iUseTarget
 {
 
 	public GameObject target;
-
-	//private RenderTexture myPortalTexture;
-	//private RenderTexture exitPortalTexture;
-
-	//public GameObject PortalRendererObject;
-	//public Camera PortalCamera;
-
 	private bool _initialized;
 
 	public Vector3 GetTargetPosition()
@@ -24,25 +17,6 @@ public class JumpBox : BaseBox, iUseTarget
 	public void Start(){
 
 		if (_initialized){return;};
-
-//		if(!myPortalTexture){
-//			myPortalTexture = new RenderTexture(512,512,24);
-//		}
-//
-//		if(target){
-//			JumpBox exit = target.GetComponent<JumpBox>();
-//			if (!exit){return;};
-//			exitPortalTexture = exit.myPortalTexture;
-//		}
-//
-//		if(PortalCamera){
-//			PortalCamera.targetTexture = myPortalTexture;
-//		}
-//
-//		if(PortalRendererObject){
-//			Renderer thisRenderer = PortalRendererObject.GetComponent<Renderer>();
-//			thisRenderer.material.SetTexture("_MainTex", exitPortalTexture);
-//		}
 
 		_initialized = true;
 
@@ -68,6 +42,22 @@ public class JumpBox : BaseBox, iUseTarget
 		GlobalOptions.Player.transform.up      = target.transform.up;
 		GlobalOptions.Player.transform.forward = target.transform.forward;
 		GlobalOptions.Player.transform.right   = target.transform.right;
+
+	}
+
+	public override bool CanBeConnected ()
+	{
+		return true;
+	}
+
+	public override void ConnectTo (GameObject other)
+	{
+
+		if(!other){return;}
+
+		if(other.GetComponentInChildren<JumpBox>()){
+			target = other;
+		}
 
 	}
 	

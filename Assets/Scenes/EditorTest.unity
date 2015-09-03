@@ -723,7 +723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2a95448d91b62488113b20b8cebbc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _markerPrefab: {fileID: 100000, guid: d4dc7f6d54a799c49af62357d0842947, type: 2}
+  MarkerPrefab: {fileID: 100000, guid: d4dc7f6d54a799c49af62357d0842947, type: 2}
+  TargetLine: {fileID: 138034, guid: a670833a6836aa64a8f46e99ecf01c66, type: 2}
+  TargetLineSteps: 10
 --- !u!1 &810633482
 GameObject:
   m_ObjectHideFlags: 0

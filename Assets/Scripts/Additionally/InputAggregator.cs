@@ -89,11 +89,19 @@ public class InputAggregator : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonUp(0)){
-			Messenger.Invoke("LeftMouseUp", this);
+			Messenger.Invoke("MouseUp", this, new GlobalOptions.MouseButtonsEventArgs(0));
 		}else if(Input.GetMouseButtonDown(0)){
-			Messenger.Invoke("LeftMouseDown", this);
+			Messenger.Invoke("MouseDown", this, new GlobalOptions.MouseButtonsEventArgs(0));
 		}else if(Input.GetMouseButton(0)){
-			Messenger.Invoke("LeftMouseHold", this);
+			Messenger.Invoke("MouseHold", this, new GlobalOptions.MouseButtonsEventArgs(0));
+		}
+
+		if (Input.GetMouseButtonUp(1)){
+			Messenger.Invoke("MouseUp", this, new GlobalOptions.MouseButtonsEventArgs(1));
+		}else if(Input.GetMouseButtonDown(1)){
+			Messenger.Invoke("MouseDown", this, new GlobalOptions.MouseButtonsEventArgs(1));
+		}else if(Input.GetMouseButton(1)){
+			Messenger.Invoke("MouseHold", this, new GlobalOptions.MouseButtonsEventArgs(1));
 		}
 			
 	}

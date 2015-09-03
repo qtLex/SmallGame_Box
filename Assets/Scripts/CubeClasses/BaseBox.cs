@@ -35,6 +35,12 @@ namespace BoxClasses
 			thisAnimator = GetComponent<Animator>();
 			OnSpawn();
 		}
+
+		public virtual bool CanBeConnected(){ return false;}
+		public virtual void ConnectTo(GameObject other){}
+		public virtual GameObject GetTarget(){return null;}
+		public virtual GameObject[] GetTargets(){return null;}
+
 		// - mors
 	}
 

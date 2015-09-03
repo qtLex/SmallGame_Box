@@ -69,7 +69,7 @@ public class EditorFunctionsButtonTag : AnyButtonScript {
 		AnyButtonPress();
 	}
 	private void ConnectButtonPress(){
-
+		_editor.SetConnectMode();
 		AnyButtonPress();
 	}
 	private void OpenButtonPress(){
