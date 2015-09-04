@@ -38,7 +38,10 @@ public class MovingBox : BaseBox
 
 	public override void UserAction(object sender, EventArgs evArgs)
 	{
-		GameObject player = GlobalOptions.Player;
+        if (_isMoving)
+            return;
+        
+        GameObject player = GlobalOptions.Player;
 
 		if(player.GetComponent<PlayerController>().isMoving()) return;
 
