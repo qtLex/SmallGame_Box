@@ -39,8 +39,8 @@ namespace BoxClasses
 	}
 
 	public class BaseCancelAction: MonoBehaviour{
-		
-		public virtual bool CancelAction(ActionHistoryType type){return true;}
+
+        public virtual bool CancelAction(ActionHistoryType type, Vector3 lastDirection) { return true; }
 		
 	}
 }

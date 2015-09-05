@@ -5,7 +5,7 @@ using GameEnums;
 
 public class CancelActionMovingBox : BaseCancelAction {
 
-	public override bool CancelAction(ActionHistoryType type){
+	public override bool CancelAction(ActionHistoryType type, Vector3 lastDirection){
 		
 		GameObject player = GlobalOptions.Player;
 		

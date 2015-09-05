@@ -68,7 +68,7 @@ public class MovingBox : BaseBox
 		                                        player.transform.position.y + coef*direction.y,
 		                                        player.transform.position.z + coef*direction.z);
 	
-		ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Empty, this.gameObject);
+		ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Empty, this.gameObject, Vector3.zero);
 
 		// установим тригеры аниматора
 		string triggerName = "";

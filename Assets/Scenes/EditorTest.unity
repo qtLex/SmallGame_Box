@@ -381,6 +381,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -625,25 +626,13 @@ Prefab:
       propertyPath: PlayerModelAmimator
       value: 
       objectReference: {fileID: 441080935}
+    - target: {fileID: 100008, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &672497653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733c99849f39ec143b7193b71a99e440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPrefab: {fileID: 100002, guid: 65fb60dea6e5c1f4bb16d0301450ad22, type: 2}
-  currentPrefabGuid: 
-  m_CubeLibrary: {fileID: 11400000, guid: f9b3cb67d3c152348b3aa027e1bd5970, type: 2}
-  gridSize: 10
-  _internalArray: []
 --- !u!1 &797972362
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c28bff52a20a074bbf669d2050b2295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Grid: {fileID: 672497653}
+  Grid: {fileID: 826368672}
 --- !u!4 &797972364
 Transform:
   m_ObjectHideFlags: 0
@@ -707,6 +696,8 @@ MonoBehaviour:
   - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level3.xml
   - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level4.xml
   - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level5.xml
+  - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level6.xml
+  - path: E:\GitHub\SmallGame_Box\Assets\Levels\Level7.xml
 --- !u!114 &797972366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +798,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 512063395}
   m_RootOrder: 0
+--- !u!114 &826368672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733c99849f39ec143b7193b71a99e440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPrefab: {fileID: 199292, guid: 2e47188d5bf9fd8418b13c111abf4d9f, type: 2}
+  currentPrefabGuid: e25f51ab-8b36-4572-9859-262227749706
+  m_CubeLibrary: {fileID: 11400000, guid: f9b3cb67d3c152348b3aa027e1bd5970, type: 2}
+  gridSize: 10
+  _internalArray: []
 --- !u!1 &864265970
 GameObject:
   m_ObjectHideFlags: 0

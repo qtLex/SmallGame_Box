@@ -310,8 +310,9 @@ GameObject:
   - 114: {fileID: 11415984}
   - 114: {fileID: 11499604}
   - 65: {fileID: 6507566}
-  - 114: {fileID: 11409262}
   - 114: {fileID: 11426374}
+  - 114: {fileID: 11490680}
+  - 114: {fileID: 11433092}
   m_Layer: 8
   m_Name: EnergyBox_Blue
   m_TagString: Untagged
@@ -811,17 +812,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11409262
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2988c1f3acc03e3409b96f66e5e64858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11413382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -877,6 +867,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3828a4553dd954eba73fa816f4bb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11433092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958dbe7eedfda654782b9317f1be41ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: []
+  movingTime: 2
 --- !u!114 &11434320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -908,6 +911,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04841b2b48736d141aca8ff9a6ad4c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11490680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7730126e2d4d947997281685d89555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11497346
@@ -1066,7 +1080,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: movingTime
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 199292}

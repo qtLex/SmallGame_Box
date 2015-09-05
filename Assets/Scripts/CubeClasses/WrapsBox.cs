@@ -3,12 +3,15 @@ using System;
 using System.Collections;
 using BoxClasses;
 using GameEnums;
+using Motors.BoxMotors;
 
 public class WrapsBox : BaseBox
 {
     private bool       _isMoving = false;
     private CubeGrid   _grid;
     private GameObject _player;
+
+    private BoxMotor motor;
 
     public void isMovingFalse()
     {
@@ -17,7 +20,10 @@ public class WrapsBox : BaseBox
 
     void Awake()
     {
-        _grid = GlobalOptions.Grid;
+        _grid   = GlobalOptions.Grid;
+        _player = GlobalOptions.Player;
+
+        motor = GetComponent<BoxMotor>();
     }
 
     private bool CanMove(out Vector3 directionMove) 
@@ -31,7 +37,7 @@ public class WrapsBox : BaseBox
             return false;
         }
 
-        // направления по чавой стрелке от направления взгляда
+        // направления по чавой стрелке от направления взгляда игрока
         Vector3[] playerDirections = { _player.transform.forward, _player.transform.right, -(_player.transform.forward), -(_player.transform.right)}; 
 
         // проверим наличие кубов по бокам
@@ -52,30 +58,41 @@ public class WrapsBox : BaseBox
 
     public override void UserAction(object sender, EventArgs evArgs)
     {
+        if (motor.isMoving)
+            return;
+
         Vector3 direction = Vector3.zero;
 
         // проверим возможность передвижения
         if (!CanMove(out direction) || direction == Vector3.zero)
             return;
 
-        // получим направление наименование тригера
-        string nameTriger = "";
-        if (direction == transform.forward)
-            nameTriger = "forward";
-        else if (direction == transform.right)
-            nameTriger = "right";
-        else if (direction == -transform.forward)
-            nameTriger = "back";
-        else if (direction == -transform.right)
-            nameTriger = "left";
+        Vector3 NewPosition = new Vector3(direction.x * _grid.gridSize + transform.position.x, direction.y * _grid.gridSize + transform.position.y, direction.z * _grid.gridSize + transform.position.z);
+        Vector3[] path = {NewPosition};
+        motor.path = path;
 
-        // установим тригер
-        thisAnimator.SetTrigger(nameTriger);
+        ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Direction, this.gameObject, -direction);
 
+        motor.StartMoving();
+    }
 
+    public override void OnRetire()
+    {
 
-        // обновляем аниматор
-        thisAnimator.Update(Time.deltaTime);
+        if (_isMoving)
+            return;
+
+        thisAnimator.SetBool("Approach", false);
+
+    }
+
+    public override void OnApproach()
+    {
+
+        if (_isMoving)
+            return;
+
+        thisAnimator.SetBool("Approach", true);
 
     }
 }

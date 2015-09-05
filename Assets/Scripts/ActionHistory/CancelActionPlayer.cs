@@ -5,7 +5,7 @@ using GameEnums;
 
 public class CancelActionPlayer : BaseCancelAction {
 
-	public override bool CancelAction(ActionHistoryType type){
+	public override bool CancelAction(ActionHistoryType type, Vector3 lastDirection){
 
 		PlayerController controller = GetComponent<PlayerController>();
 

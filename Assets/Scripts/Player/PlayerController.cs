@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	private float      coefRight;
 	private Vector3    newPoint;
 	private bool       useNewPoint;
+    private bool _blockedByAnotherObject;
 
 	#endregion
 
@@ -36,8 +37,21 @@ public class PlayerController : MonoBehaviour {
 		animatorPose = GameObject.Find("PlayerModel_imporded").GetComponent<Animator>();
 	}
 
+    public bool blockedByAnotherObject
+    {
+        get
+        {
+            return _blockedByAnotherObject;
+        }
+
+        set
+        {
+            _blockedByAnotherObject = value;
+        }
+    }
+
 	public bool isMoving(){
-		return !animator.GetCurrentAnimatorStateInfo(0).IsName("Empty"); 	
+		return !animator.GetCurrentAnimatorStateInfo(0).IsName("Empty") || _blockedByAnotherObject; 	
 	}
 
 	public bool MovingKeyDown(KeyCode key, bool bakehistory = true){
@@ -46,36 +60,34 @@ public class PlayerController : MonoBehaviour {
 
 		Vector3 direction = Vector3.zero;
 
-		Debug.Log("going");
-
 		switch (key){
 		case KeyCode.UpArrow:
 			direction = transform.forward;
 			animator.SetTrigger("UpArrow");
 			animatorPose.SetTrigger("Forward");
 			if(bakehistory)
-				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Forward, this.gameObject);
+				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Forward, this.gameObject, Vector3.zero);
 		break;
 		case KeyCode.DownArrow:
 			direction = -transform.forward;
 			animator.SetTrigger("DownArrow");
 			animatorPose.SetTrigger("Back");
 			if(bakehistory)
-				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Back, this.gameObject);
+                ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Back, this.gameObject, Vector3.zero);
 		break;
 		case KeyCode.LeftArrow:
 			direction = -transform.right;
 			animator.SetTrigger("LeftArrow");
 			animatorPose.SetTrigger("Left");
 			if(bakehistory)
-				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Left, this.gameObject);
+                ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Left, this.gameObject, Vector3.zero);
 		break;
 		case KeyCode.RightArrow:
 			direction = transform.right;
 			animator.SetTrigger("RightArrow");
 			animatorPose.SetTrigger("Right");
 			if(bakehistory)
-				ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Right, this.gameObject);
+                ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Right, this.gameObject, Vector3.zero);
 		break;
 		default:
 			return false;

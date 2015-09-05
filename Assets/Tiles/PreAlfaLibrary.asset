@@ -24,3 +24,5 @@ MonoBehaviour:
     Object: {fileID: 100002, guid: ac4e756834d68f345a16dc722f81ddd6, type: 2}
   - Key: ce933821-c002-46ff-adca-a7231008d7bc
     Object: {fileID: 100004, guid: 65696d05ec8cc844a9b40e2f920b37bc, type: 2}
+  - Key: e25f51ab-8b36-4572-9859-262227749706
+    Object: {fileID: 199292, guid: 2e47188d5bf9fd8418b13c111abf4d9f, type: 2}
