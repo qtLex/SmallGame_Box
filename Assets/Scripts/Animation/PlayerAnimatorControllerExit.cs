@@ -7,14 +7,7 @@ public class PlayerAnimatorControllerExit : StateMachineBehaviour {
 
 		PlayerController playerController = animator.gameObject.GetComponent<PlayerController>();
 		playerController.DragMainPivot();
-
-		MovingBox movingBox = GlobalOptions.CurrentBox.GetComponent<MovingBox>();
-
-		if(!movingBox)
-			return;
-
-		movingBox.isMovingFalse();
-
+        
 	}
 
 }

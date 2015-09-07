@@ -7,16 +7,10 @@ using Motors.BoxMotors;
 
 public class WrapsBox : BaseBox
 {
-    private bool       _isMoving = false;
     private CubeGrid   _grid;
     private GameObject _player;
 
     private BoxMotor motor;
-
-    public void isMovingFalse()
-    {
-        _isMoving = false;
-    }
 
     void Awake()
     {
@@ -27,7 +21,7 @@ public class WrapsBox : BaseBox
     }
 
     private bool CanMove(out Vector3 directionMove) 
-    {
+    {     
         int layerMask = 1 << LayerMask.NameToLayer("Box");
         Vector3 direction = -(_player.transform.up);
 
@@ -58,7 +52,7 @@ public class WrapsBox : BaseBox
 
     public override void UserAction(object sender, EventArgs evArgs)
     {
-        if (motor.isMoving)
+        if (!motor && motor.isMoving)
             return;
 
         Vector3 direction = Vector3.zero;
@@ -67,31 +61,39 @@ public class WrapsBox : BaseBox
         if (!CanMove(out direction) || direction == Vector3.zero)
             return;
 
-        Vector3 NewPosition = new Vector3(direction.x * _grid.gridSize + transform.position.x, direction.y * _grid.gridSize + transform.position.y, direction.z * _grid.gridSize + transform.position.z);
-        Vector3[] path = {NewPosition};
-        motor.path = path;
+        Vector3 FirstPosition = new Vector3(direction.x * _grid.gridSize + transform.position.x, direction.y * _grid.gridSize + transform.position.y, direction.z * _grid.gridSize + transform.position.z);
+
+
+        int layerMask = 1 << LayerMask.NameToLayer("Box");
+        Vector3 directionBottom = -(_player.transform.up);
+
+
+        if (!Physics.Raycast(FirstPosition, directionBottom, _grid.gridSize, layerMask))
+        {
+            Vector3 SecondPosition = new Vector3(directionBottom.x * _grid.gridSize + FirstPosition.x, directionBottom.y * _grid.gridSize + FirstPosition.y, directionBottom.z * _grid.gridSize + FirstPosition.z);
+            Vector3[] path = { FirstPosition, SecondPosition };
+            motor.path = path;
+        }
+        else
+        {
+            Vector3[] path = { FirstPosition };
+            motor.path = path;
+        }
+
 
         ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Direction, this.gameObject, -direction);
-
+        
         motor.StartMoving();
     }
 
     public override void OnRetire()
     {
-
-        if (_isMoving)
-            return;
-
         thisAnimator.SetBool("Approach", false);
 
     }
 
     public override void OnApproach()
     {
-
-        if (_isMoving)
-            return;
-
         thisAnimator.SetBool("Approach", true);
 
     }

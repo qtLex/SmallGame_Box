@@ -40,7 +40,7 @@ public class PlayerAnimatorController : MonoBehaviour {
 
 		anim.SetFloat("AnimSpeed", AnimationSpeed);
 
-		modelAnimator.SetFloat("IdleAnimSpeed" , AnimationSpeed/6);
+		modelAnimator.SetFloat("IdleAnimSpeed" , AnimationSpeed*0.166f);
 		modelAnimator.SetFloat("AnimSpeed066"  , AnimationSpeed*0.66f);
 		modelAnimator.SetFloat("AnimSpeed198"  , AnimationSpeed*1.98f);
 	}
