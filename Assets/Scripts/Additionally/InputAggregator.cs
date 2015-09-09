@@ -10,7 +10,7 @@ public class InputAggregator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject startpoint = GameObject.Find("StartPoint(Clone)");
+		GameObject startpoint = GameObject.Find("Box_Spawm(Clone)");
 		_playerController = GlobalOptions.Player.GetComponent<PlayerController>();
 
 		if(!startpoint)
@@ -27,7 +27,22 @@ public class InputAggregator : MonoBehaviour {
 		// + mors
 		// Изменение режима
 		if(Input.GetKeyUp(KeyCode.F12)){
+
+			// Тут нужно поменять на событие.
 			GlobalOptions.SwitchMode();
+
+			CameraRotationAroundMotor motor1 = Camera.main.GetComponent<CameraRotationAroundMotor>();
+			ExtendedFlycam motor2 = Camera.main.GetComponent<ExtendedFlycam>();
+
+			if (GlobalOptions.isEditMode){
+				motor1.enabled = false;
+			}else{
+				motor1.enabled = true;
+			}
+
+
+			motor2.enabled = !motor1.enabled;
+
 		}
 		// - mors
 

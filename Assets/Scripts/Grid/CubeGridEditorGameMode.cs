@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CubeGridEditorGameMode : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 	public GameObject MarkerPrefab;
 	public GameObject TargetLine;
+	public Text ToolTipText;
 	public int TargetLineSteps = 10;
 
 	private CubeGrid _grid;
@@ -22,6 +24,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 	private GameObject _selectedObject;
 	private GameObject _targetLine;
 	private int _targetLineSteps = 0;
+
 
 	private EditorModes EditorMode{
 		set{_previousEditorMode = _editorMode; _editorMode = value;}
@@ -118,11 +121,17 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 			if (_targetLine){
 				GameObject.DestroyImmediate(_targetLine);
 			}
+			ToolTipText.gameObject.SetActive(false);
 			return;
 		}
 
-		DrawParabola();
+		if(ToolTipText){
+			ToolTipText.gameObject.SetActive(true);
+			ToolTipText.transform.position = Input.mousePosition;
+			ToolTipText.text = PreviousEditorMode.ToString();
+		}
 
+		DrawParabola();
 
 	}
 
@@ -130,6 +139,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 		switch(PreviousEditorMode){
 			case EditorModes.Move:{
+				if (!_selectedObject) break;
 				_grid.MoveCube(_selectedObject.transform.position, _markerPosition);
 				break;
 			}
@@ -283,8 +293,10 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 				}
 				case EditorModes.Move:
 				case EditorModes.Connect:{
-					EditorMode = EditorModes.Target;
 					_selectedObject = _grid.GetCubeAt(_markerPosition);
+					if(_selectedObject){
+						EditorMode = EditorModes.Target;
+					}					
 					break;
 				}			
 				case EditorModes.Target:{
