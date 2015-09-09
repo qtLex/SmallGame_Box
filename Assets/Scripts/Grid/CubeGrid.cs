@@ -135,7 +135,6 @@ public class CubeGrid : CubeGridBase {
 	}
 	
 	#endregion
-
 }
 
 

@@ -15,8 +15,13 @@ namespace Motors.BoxMotors
         private Vector3 currentPosition;
 
         private GameObject _player;
+        private CubeGrid _grid;
         private Vector3 playerVector;
         private PlayerController playerController;
+
+        // смена в сетке
+        private Vector3 oldPosition;
+        private Vector3 newPosition;
 
         public bool isMoving
         {
@@ -37,6 +42,8 @@ namespace Motors.BoxMotors
             if (path.Length == 0)
                 return false;
 
+            oldPosition = transform.position;
+
             currentPathIndex = 0;
             currentPosition  = path[currentPathIndex];
             currentTime      = movingTime;
@@ -52,12 +59,17 @@ namespace Motors.BoxMotors
         {
             _player = GlobalOptions.Player;
             playerController = _player.GetComponent<PlayerController>();
+
+            _grid = GlobalOptions.Grid;
         }
 
         void SetPosition(Vector3 position)
         {
+            //Debug.Log(position + " = " + transform.position);
             transform.position = position;
-            _player.transform.position = new Vector3(transform.position.x + playerVector.x, transform.position.y + playerVector.y, transform.position.z + playerVector.z);
+            newPosition = position;
+           
+            _player.transform.position = new Vector3(position.x + playerVector.x, position.y + playerVector.y, position.z + playerVector.z);
         }
 
         void Update()
@@ -74,6 +86,9 @@ namespace Motors.BoxMotors
                 if (currentPathIndex >= path.Length)
                 {
                     isMoving = false;
+                    
+                    // сменим позицию куба в сетке
+                    _grid.UpdateObjectCoords(oldPosition, newPosition);
                 }
                 else
                 {

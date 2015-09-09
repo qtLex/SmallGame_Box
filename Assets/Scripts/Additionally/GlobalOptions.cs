@@ -84,7 +84,7 @@ public static class GlobalOptions
 		get{
 			if(!_Grid){
 
-				GetGlobalSingleton();				
+                GetGlobalSingleton();				
 				_Grid = _singleton.GetComponent<CubeGridSingletonObject>().Grid;
 
 			}
@@ -108,4 +108,9 @@ public static class GlobalOptions
 			return _DeferredExecutionComponent;
 		}
 	}
+
+    public static void Refresh()
+    {
+        _Grid = null;
+    }
 }

@@ -94,7 +94,7 @@ public class CubeGridBase : ScriptableObject
         }
   }
   
-    public GameObject GetCubeAt(Vector3 coords)
+  public GameObject GetCubeAt(Vector3 coords)
     {
 		string key = "";
 		decimateCoords(coords, out key);
@@ -105,18 +105,39 @@ public class CubeGridBase : ScriptableObject
 		return existingCube;
     }
 
-    public void ClearDictionary()
-    {
+  public void ClearDictionary()
+  {
 
       foreach (GameObject _gameObject in Elements.Values)
-        {
-    
+      {
+
           DestroyImmediate(_gameObject);
-    
+
+      }
+
+      Elements.Clear();
+
+  }
+
+  #region Работа с элементами сетки
+
+  public bool UpdateObjectCoords(Vector3 oldCoords, Vector3 newCoords)
+    {
+        string oldKey, newKey; GameObject existingCube;
+
+        decimateCoords(oldCoords, out oldKey); decimateCoords(newCoords, out newKey);
+        if (Elements.TryGetValue(oldKey, out existingCube))
+        {
+            Elements.Add(newKey, existingCube);
+            Elements.Remove(oldKey);
+
+            Debug.Log("good");
+
+            return true;
         }
+        
+      return false;
+    }
 
-        Elements.Clear();
-
-    }   
-
+  #endregion
 }
