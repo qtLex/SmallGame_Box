@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GameEnums;
 
 public static class GlobalOptions
 {
@@ -8,9 +9,7 @@ public static class GlobalOptions
 	private static GameObject _CurrentBox;
 	private static CubeGrid   _Grid;
 	private static DeferredExecution _DeferredExecutionComponent;
-
-	// + mors
-	private static GameEnums.GameModes GameMode = GameEnums.GameModes.PlayMode;
+	private static GameModes GameMode = GameEnums.GameModes.PlayMode;
 	private static CubeGridEditorGameMode _gameModeEditor;
 	private static GameObject _singleton;
 
@@ -57,8 +56,6 @@ public static class GlobalOptions
 	public static bool isEditMode{
 		get{return GameMode == GameEnums.GameModes.EditMode;}
 	}
-
-	// -mors
 
 	public static GameObject Player{
 		get{
@@ -113,4 +110,5 @@ public static class GlobalOptions
     {
         _Grid = null;
     }
+
 }

@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void Start () {
-		CubeGridSingletonObject sing = FindObjectOfType<CubeGridSingletonObject>() as CubeGridSingletonObject;
+		_sing = FindObjectOfType<CubeGridSingletonObject>() as CubeGridSingletonObject;
 		
 		RefreshLevelList(!UseDefaultFolder ? LevelFolder : Application.dataPath+"/Levels");
 	}

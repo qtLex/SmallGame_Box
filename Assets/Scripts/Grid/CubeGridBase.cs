@@ -130,9 +130,7 @@ public class CubeGridBase : ScriptableObject
         {
             Elements.Add(newKey, existingCube);
             Elements.Remove(oldKey);
-
-            Debug.Log("good");
-
+                        
             return true;
         }
         
