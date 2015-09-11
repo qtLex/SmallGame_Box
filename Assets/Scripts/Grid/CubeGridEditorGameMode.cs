@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using EventArgsChildren;
 
 public class CubeGridEditorGameMode : MonoBehaviour {
 
@@ -275,59 +276,71 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 	private void OnMouseUp(object sender, EventArgs evArgs){
 
-		GlobalOptions.MouseButtonsEventArgs eventArguments = null;
-		if(!_traceMouse){return;};
-		if(evArgs != null) eventArguments = (GlobalOptions.MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
+        if (!_traceMouse)
+            return;
 
-		if(eventArguments.Button == KeyCode.Mouse0){
+        if (evArgs != null)
+        {
+            MouseButtonsEventArgs eventArguments = (MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
 
-			switch (EditorMode){
-				case EditorModes.Add:{
-					GameObject lastCube;
-					_grid.CreateCubeAt(_markerPosition, out lastCube);
-					break;
-				}
-				case EditorModes.Delete:{
-					_grid.DeleteCubeAt(_markerPosition);
-					break;
-				}
-				case EditorModes.Move:
-				case EditorModes.Connect:{
-					_selectedObject = _grid.GetCubeAt(_markerPosition);
-					if(_selectedObject){
-						EditorMode = EditorModes.Target;
-					}					
-					break;
-				}			
-				case EditorModes.Target:{
-					ProcessTargetClick();
-				break;
-				}
-							
-			}
+            if (eventArguments.Button == KeyCode.Mouse0)
+            {
+                switch (EditorMode)
+                {
+                    case EditorModes.Add:
+                        {
+                            GameObject lastCube;
+                            _grid.CreateCubeAt(_markerPosition, out lastCube);
+                            break;
+                        }
+                    case EditorModes.Delete:
+                        {
+                            _grid.DeleteCubeAt(_markerPosition);
+                            break;
+                        }
+                    case EditorModes.Move:
+                    case EditorModes.Connect:
+                        {
+                            _selectedObject = _grid.GetCubeAt(_markerPosition);
+                            if (_selectedObject)
+                            {
+                                EditorMode = EditorModes.Target;
+                            }
+                            break;
+                        }
+                    case EditorModes.Target:
+                        {
+                            ProcessTargetClick();
+                            break;
+                        }
+                }
 
-		}else if(eventArguments.Button == KeyCode.Mouse1){
+            }
+            else if (eventArguments.Button == KeyCode.Mouse1)
+            {
 
-			switch (EditorMode){
-				case EditorModes.Target:{
-					EditorMode = PreviousEditorMode;
-					break;
-				}				
-			}
+                switch (EditorMode)
+                {
+                    case EditorModes.Target:
+                        {
+                            EditorMode = PreviousEditorMode;
+                            break;
+                        }
+                }
+            }
+        }
 
-		}
+    }
 
+	private void OnMouseDown(object sender, EventArgs evArgs)
+    {
+        if (!_traceMouse)
+            return;
 
-	}
-
-	private void OnMouseDown(object sender, EventArgs evArgs){
-			
-		GlobalOptions.MouseButtonsEventArgs eventArguments = null;
-			if(!_traceMouse){return;};
-			if(evArgs != null) eventArguments = (GlobalOptions.MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
-			
-
-
+        if (evArgs != null)
+        {
+             MouseButtonsEventArgs eventArguments = (MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
+        }
 	}
 
 }

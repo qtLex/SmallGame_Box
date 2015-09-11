@@ -2,6 +2,7 @@
 using System.Collections;
 using GameEnums;
 using BoxClasses;
+using EventArgsChildren;
 
 public class InputAggregator : MonoBehaviour {
 
@@ -104,19 +105,19 @@ public class InputAggregator : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButtonUp(0)){
-			Messenger.Invoke("MouseUp", this, new GlobalOptions.MouseButtonsEventArgs(0));
+			Messenger.Invoke("MouseUp", this, new MouseButtonsEventArgs(0));
 		}else if(Input.GetMouseButtonDown(0)){
-			Messenger.Invoke("MouseDown", this, new GlobalOptions.MouseButtonsEventArgs(0));
+			Messenger.Invoke("MouseDown", this, new MouseButtonsEventArgs(0));
 		}else if(Input.GetMouseButton(0)){
-			Messenger.Invoke("MouseHold", this, new GlobalOptions.MouseButtonsEventArgs(0));
+			Messenger.Invoke("MouseHold", this, new MouseButtonsEventArgs(0));
 		}
 
 		if (Input.GetMouseButtonUp(1)){
-			Messenger.Invoke("MouseUp", this, new GlobalOptions.MouseButtonsEventArgs(1));
+			Messenger.Invoke("MouseUp", this, new MouseButtonsEventArgs(1));
 		}else if(Input.GetMouseButtonDown(1)){
-			Messenger.Invoke("MouseDown", this, new GlobalOptions.MouseButtonsEventArgs(1));
+			Messenger.Invoke("MouseDown", this, new MouseButtonsEventArgs(1));
 		}else if(Input.GetMouseButton(1)){
-			Messenger.Invoke("MouseHold", this, new GlobalOptions.MouseButtonsEventArgs(1));
+			Messenger.Invoke("MouseHold", this, new MouseButtonsEventArgs(1));
 		}
 			
 	}
