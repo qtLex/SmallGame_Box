@@ -16,6 +16,7 @@ public class PlayerCameraAlign : MonoBehaviour {
 
 	void Update () {
 
+		if (GlobalOptions.isEditMode) return;
 		if (playerComntroller.isMoving()) return;
 		
 		Vector3 playerDirection = transform.forward;

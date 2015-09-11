@@ -88,7 +88,7 @@ namespace Motors.BoxMotors
                     isMoving = false;
                     
                     // сменим позицию куба в сетке
-                    _grid.UpdateObjectCoords(oldPosition, newPosition);
+                    _grid.MoveCube(oldPosition, newPosition);
                 }
                 else
                 {

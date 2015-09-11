@@ -39,7 +39,9 @@ public class CubePropertyDrawer :  PropertyDrawer {
 
 			if (obj.objectReferenceValue != null){
 				Texture2D tex = AssetPreview.GetAssetPreview(obj.objectReferenceValue);
-				EditorGUI.DrawPreviewTexture(TexRect, tex);
+				if (tex){
+					EditorGUI.DrawPreviewTexture(TexRect, tex);
+				}
 			}
 
 		}

@@ -10,7 +10,7 @@ public class InputAggregator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject startpoint = GameObject.Find("StartPoint(Clone)");
+		GameObject startpoint = GameObject.Find("Box_Spawm(Clone)");
 		_playerController = GlobalOptions.Player.GetComponent<PlayerController>();
 
 		if(!startpoint)
@@ -27,7 +27,22 @@ public class InputAggregator : MonoBehaviour {
 		// + mors
 		// Изменение режима
 		if(Input.GetKeyUp(KeyCode.F12)){
+
+			// Тут нужно поменять на событие.
 			GlobalOptions.SwitchMode();
+
+			CameraRotationAroundMotor motor1 = Camera.main.GetComponent<CameraRotationAroundMotor>();
+			ExtendedFlycam motor2 = Camera.main.GetComponent<ExtendedFlycam>();
+
+			if (GlobalOptions.isEditMode){
+				motor1.enabled = false;
+			}else{
+				motor1.enabled = true;
+			}
+
+
+			motor2.enabled = !motor1.enabled;
+
 		}
 		// - mors
 
@@ -76,7 +91,34 @@ public class InputAggregator : MonoBehaviour {
 	}
 
 	private void EditModeControl(){
-		float s = 1.0f;
+
+		if(Input.GetKeyDown(KeyCode.Space)){
+			
+			Messenger.Invoke("ShowHideBoxSelection", this);
+
+		}
+		else if(Input.GetKeyUp(KeyCode.Space)){
+
+			Messenger.Invoke("ShowHideBoxSelection", this);
+
+		}
+
+		if (Input.GetMouseButtonUp(0)){
+			Messenger.Invoke("MouseUp", this, new GlobalOptions.MouseButtonsEventArgs(0));
+		}else if(Input.GetMouseButtonDown(0)){
+			Messenger.Invoke("MouseDown", this, new GlobalOptions.MouseButtonsEventArgs(0));
+		}else if(Input.GetMouseButton(0)){
+			Messenger.Invoke("MouseHold", this, new GlobalOptions.MouseButtonsEventArgs(0));
+		}
+
+		if (Input.GetMouseButtonUp(1)){
+			Messenger.Invoke("MouseUp", this, new GlobalOptions.MouseButtonsEventArgs(1));
+		}else if(Input.GetMouseButtonDown(1)){
+			Messenger.Invoke("MouseDown", this, new GlobalOptions.MouseButtonsEventArgs(1));
+		}else if(Input.GetMouseButton(1)){
+			Messenger.Invoke("MouseHold", this, new GlobalOptions.MouseButtonsEventArgs(1));
+		}
+			
 	}
 
 }

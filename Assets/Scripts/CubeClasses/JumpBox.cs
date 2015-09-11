@@ -7,7 +7,6 @@ public class JumpBox : BaseBox, iUseTarget
 {
 
 	public GameObject target;
-
 	private bool _initialized;
 
 	public Vector3 GetTargetPosition()
@@ -43,6 +42,22 @@ public class JumpBox : BaseBox, iUseTarget
 		GlobalOptions.Player.transform.up      = target.transform.up;
 		GlobalOptions.Player.transform.forward = target.transform.forward;
 		GlobalOptions.Player.transform.right   = target.transform.right;
+
+	}
+
+	public override bool CanBeConnected ()
+	{
+		return true;
+	}
+
+	public override void ConnectTo (GameObject other)
+	{
+
+		if(!other){return;}
+
+		if(other.GetComponentInChildren<JumpBox>()){
+			target = other;
+		}
 
 	}
 	
