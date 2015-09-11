@@ -314,7 +314,7 @@ GameObject:
   - 114: {fileID: 11490680}
   - 114: {fileID: 11433092}
   m_Layer: 8
-  m_Name: EnergyBox_Blue
+  m_Name: Box_EnergyBox_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
