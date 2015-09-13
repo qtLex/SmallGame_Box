@@ -89,16 +89,16 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 		}
 
 		// Events
-		Messenger.AddListener("MouseUp", OnMouseUp);
-		Messenger.AddListener("MouseDown", OnMouseDown);
+        Messenger.AddListener<MouseButtonsEventArgs>("MouseUp", OnMouseUp);
+        Messenger.AddListener<MouseButtonsEventArgs>("MouseDown", OnMouseDown);
 		
 	}
 
 	void OnDisable(){
 
 		// Events
-		Messenger.RemoveListener("MouseUp", OnMouseUp);
-		Messenger.RemoveListener("MouseDown", OnMouseDown);
+        Messenger.RemoveListener<MouseButtonsEventArgs>("MouseUp", OnMouseUp);
+        Messenger.RemoveListener<MouseButtonsEventArgs>("MouseDown", OnMouseDown);
 
 		DestroyImmediate(_marker);
 		DestroyImmediate(_targetLine);
@@ -272,18 +272,17 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
 		return intersectionPoint;
 
-	} 
+	}
 
-	private void OnMouseUp(object sender, EventArgs evArgs){
+    private void OnMouseUp(object sender, MouseButtonsEventArgs evArgs)
+    {
 
         if (!_traceMouse)
             return;
 
         if (evArgs != null)
         {
-            MouseButtonsEventArgs eventArguments = (MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
-
-            if (eventArguments.Button == KeyCode.Mouse0)
+            if (evArgs.Button == KeyCode.Mouse0)
             {
                 switch (EditorMode)
                 {
@@ -316,7 +315,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
                 }
 
             }
-            else if (eventArguments.Button == KeyCode.Mouse1)
+            else if (evArgs.Button == KeyCode.Mouse1)
             {
 
                 switch (EditorMode)
@@ -332,14 +331,14 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 
     }
 
-	private void OnMouseDown(object sender, EventArgs evArgs)
+    private void OnMouseDown(object sender, MouseButtonsEventArgs evArgs)
     {
         if (!_traceMouse)
             return;
 
         if (evArgs != null)
         {
-             MouseButtonsEventArgs eventArguments = (MouseButtonsEventArgs)evArgs;// Не красиво! А если указатель не на тип MouseButtonEventArgs? Каст отработает, но данные будут не валидные.
+             
         }
 	}
 
