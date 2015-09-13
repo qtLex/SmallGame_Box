@@ -389,6 +389,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -1415,7 +1416,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: dbb4b1f50617f3a45b420e7e298bc24f, type: 2}
       propertyPath: m_LocalPosition.z
