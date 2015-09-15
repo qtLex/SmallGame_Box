@@ -11,12 +11,10 @@ public class PlayerDetectorJumpBox : MonoBehaviour
         if (other.gameObject.tag != "Player")
             return;
 
-        GlobalOptions.CurrentBox = this.transform.parent.gameObject;
-
-
+        
         if (!GlobalOptions.Player.GetComponent<PlayerController>().isMoving())
         {
-            BaseBox box = GlobalOptions.CurrentBox.GetComponent<BaseBox>();
+            BaseBox box = this.transform.parent.gameObject.GetComponent<BaseBox>();
             if (!box)
                 return;
 
