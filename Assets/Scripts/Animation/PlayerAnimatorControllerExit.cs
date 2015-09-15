@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BoxClasses;
 
 public class PlayerAnimatorControllerExit : StateMachineBehaviour {
 
@@ -7,7 +8,7 @@ public class PlayerAnimatorControllerExit : StateMachineBehaviour {
 
 		PlayerController playerController = animator.gameObject.GetComponent<PlayerController>();
 		playerController.DragMainPivot();
-        
+       
 	}
 
 }
