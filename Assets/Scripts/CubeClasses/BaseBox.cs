@@ -36,6 +36,11 @@ namespace BoxClasses
 			OnSpawn();
 		}
 
+        void OnDestroy()
+        {
+            Messenger.RemoveListener("UserAction", UserAction);
+        }
+
 		public virtual bool CanBeConnected(){ return false;}
 		public virtual void ConnectTo(GameObject other){}
 		public virtual GameObject GetTarget(){return null;}
