@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3    newPoint;
 	private bool       useNewPoint;
     private bool _blockedByAnotherObject;
-
+    
 	#endregion
 
 	public Vector3 NewPoint{
