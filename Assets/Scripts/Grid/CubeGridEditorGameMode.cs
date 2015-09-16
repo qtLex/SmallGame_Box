@@ -26,6 +26,9 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 	private GameObject _targetLine;
 	private int _targetLineSteps = 0;
 
+	public GameObject CursorObject{
+		get{return _marker;}
+	}
 
 	private EditorModes EditorMode{
 		set{_previousEditorMode = _editorMode; _editorMode = value;}

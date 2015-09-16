@@ -333,6 +333,7 @@ GameObject:
   - 114: {fileID: 512063400}
   - 114: {fileID: 512063399}
   - 114: {fileID: 512063397}
+  - 45: {fileID: 512063401}
   m_Layer: 31
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -389,6 +390,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -440,10 +442,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSensitivity: 90
-  climbSpeed: 20
-  normalMoveSpeed: 20
+  climbSpeed: 30
+  normalMoveSpeed: 30
   slowMoveFactor: 1
   fastMoveFactor: 8
+  RotateByMouse: 0
 --- !u!114 &512063398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +517,14 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
+--- !u!45 &512063401
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 512063390}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 058cbfde9e1b4de488b7f5ef8bb773ab, type: 2}
 --- !u!1 &520265126
 GameObject:
   m_ObjectHideFlags: 0
