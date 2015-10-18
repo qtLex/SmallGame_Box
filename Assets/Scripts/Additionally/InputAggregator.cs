@@ -63,22 +63,22 @@ public class InputAggregator : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.UpArrow)
 		   && _playerController != null){
-			_playerController.MovingKeyDown(KeyCode.UpArrow);
+               _playerController.CalculateMovement(_playerController.transform.forward);
 		}
 		
 		else if(Input.GetKeyDown(KeyCode.DownArrow)
 		        && _playerController != null){
-			_playerController.MovingKeyDown(KeyCode.DownArrow);
+                    _playerController.CalculateMovement(-_playerController.transform.forward);
 		}
 		
 		else if(Input.GetKeyDown(KeyCode.RightArrow)
 		        && _playerController != null){
-			_playerController.MovingKeyDown(KeyCode.RightArrow);
+                    _playerController.CalculateMovement(_playerController.transform.right);
 		}
 		
 		else if(Input.GetKeyDown(KeyCode.LeftArrow)
 		        && _playerController != null){
-			_playerController.MovingKeyDown(KeyCode.LeftArrow);
+                    _playerController.CalculateMovement(-_playerController.transform.right);
 		}
 		
 		else if(Input.GetKeyDown(KeyCode.B))
