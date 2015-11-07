@@ -19,7 +19,8 @@ public class EditorFunctionsButtonTag : AnyButtonScript {
 	public string CommandName;
 	// "Add","Delete","Move","Connect","Open","Save","Exit"
 
-	void Start(){
+	void Start()
+    {
 
 		if (!_builder){
 			_builder = GetComponentInParent<EditorFunctionsUIBuilder>();
@@ -27,9 +28,6 @@ public class EditorFunctionsButtonTag : AnyButtonScript {
 		if(!_editor){
 			_editor = GlobalOptions.GetEditorComponent();
 		}
-
-		//_thisImage = GetComponent<Image>();
-
 	}
 
 	void Awake(){
@@ -72,16 +70,26 @@ public class EditorFunctionsButtonTag : AnyButtonScript {
 		_editor.SetConnectMode();
 		AnyButtonPress();
 	}
-	private void OpenButtonPress(){
+	private void OpenButtonPress()
+    {
+        MenuManager menuManager = FindObjectOfType<MenuManager>() as MenuManager;
 
+        if(!menuManager)
+            return;
 
+        menuManager.ShowMenu(1);
 	}
-	private void SaveButtonPress(){
+	private void SaveButtonPress()
+    {
+        MenuManager menuManager = FindObjectOfType<MenuManager>() as MenuManager;
 
-
+        if (!menuManager)
+            return;
+        menuManager.ShowMenu(4);
 	}
 
-	private void AnyButtonPress(){
+	private void AnyButtonPress()
+    {
 		if (_currentButton){
 			_currentImage = _currentButton.GetComponent<Image>();
 			_currentImage.color = _builder.ButtonPrefab.GetComponent<Image>().color;

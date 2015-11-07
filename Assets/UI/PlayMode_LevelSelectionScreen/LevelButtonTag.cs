@@ -7,13 +7,15 @@ public class LevelButtonTag : AnyButtonScript {
 	private LevelManager Manager;
 	public LevelManager.Level LevelInfo;
 
-	void Awake(){	
+	void Awake()
+    {	
 		base.AwakeBase();
 		Manager = FindObjectOfType<LevelManager>() as LevelManager;
 	}
 
 	// ived
-	public override void onClick(){
+	public override void onClick()
+    {
 
 		if(Manager == null) return;
 

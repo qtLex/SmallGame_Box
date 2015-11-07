@@ -7,7 +7,8 @@ public class LevelUIBuilder : MonoBehaviour {
 	public GameObject ButtonPrefab;
 	private LevelManager Manager;
 	
-	void Awake(){
+	void Awake()
+    {
 		RebuildGrid();
 	}
 	

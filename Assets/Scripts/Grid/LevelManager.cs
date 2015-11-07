@@ -27,12 +27,17 @@ public class LevelManager : MonoBehaviour {
 
 	void Start () {
 		_sing = FindObjectOfType<CubeGridSingletonObject>() as CubeGridSingletonObject;
-		RefreshLevelList(!UseDefaultFolder ? LevelFolder : Application.dataPath+"/Levels");
+		RefreshLevelList(GetLevelFolder());
 	}
+
+    public string GetLevelFolder()
+    {
+        return !UseDefaultFolder ? LevelFolder : Application.dataPath+"/Levels";
+    }
 
 	public void RefreshMe(){
 
-		RefreshLevelList(!UseDefaultFolder ? LevelFolder : Application.dataPath+"/Levels");
+		RefreshLevelList(GetLevelFolder());
 	}
 	
 	void RefreshLevelList(string path){

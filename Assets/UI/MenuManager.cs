@@ -2,8 +2,8 @@
 using System.Collections;
 using System;
 
-public class MenuManager : MonoBehaviour {
-
+public class MenuManager : MonoBehaviour
+ {
 	public RectTransform StartingMenu;
 	public KeyCode MenuKey;
 	public GameObject[] MenuCollection;
@@ -17,7 +17,8 @@ public class MenuManager : MonoBehaviour {
 		}
 
 		Messenger.AddListener("Dead", ShowDeadMenu, 2);
-		Messenger.AddListener("ShowHideBoxSelection", ShowHideBoxSelectionMenu, 0);
+		Messenger.AddListener("ShowBoxSelection", ShowBoxSelectionMenu);
+        Messenger.AddListener("HideBoxSelection", HideBoxSelectionMenu);
 	
 	}
 
@@ -45,12 +46,19 @@ public class MenuManager : MonoBehaviour {
 	
 	}
 
-	public void ShowHideBoxSelectionMenu(object sender, EventArgs args){
-
-     	ShowMenu(3, true);
+	public void ShowBoxSelectionMenu(object sender, EventArgs args)
+    {    
+        ShowMenu(3, true);
 	}
 
-
+    public void HideBoxSelectionMenu(object sender, EventArgs args)
+    {
+        Debug.Log(CurrentActiveMenu == MenuCollection[3]);
+        
+        if(CurrentActiveMenu == MenuCollection[3])
+            ShowMenu(3,true);
+    }
+    
 	public void ShowMenu(int index, bool Invert = false){
 
 		if (index > MenuCollection.Length - 1) return;
