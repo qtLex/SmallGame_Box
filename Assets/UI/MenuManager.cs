@@ -2,13 +2,14 @@
 using System.Collections;
 using System;
 
-public class MenuManager : MonoBehaviour {
-
+public class MenuManager : MonoBehaviour
+ {
 	public RectTransform StartingMenu;
 	public KeyCode MenuKey;
 	public GameObject[] MenuCollection;
 
 	private GameObject CurrentActiveMenu;
+
 
 	void Start () {
 		if(MenuKey == KeyCode.None){
@@ -16,27 +17,49 @@ public class MenuManager : MonoBehaviour {
 		}
 
 		Messenger.AddListener("Dead", ShowDeadMenu, 2);
+		Messenger.AddListener("ShowBoxSelection", ShowBoxSelectionMenu);
+        Messenger.AddListener("HideBoxSelection", HideBoxSelectionMenu);
+	
 	}
 
 	void Update () {
 
 		if(!StartingMenu) return;
 
-		if (Input.GetKeyUp(MenuKey)){
+		if(GlobalOptions.isEditMode){
 
-			//StartingMenu.gameObject.SetActive(!StartingMenu.gameObject.activeSelf);
 
-			if (CurrentActiveMenu != null){
-				CurrentActiveMenu.SetActive(!CurrentActiveMenu.activeSelf);
+
+		}else if (GlobalOptions.isPlayMode){
+
+			if (Input.GetKeyUp(MenuKey)){
+
+				//StartingMenu.gameObject.SetActive(!StartingMenu.gameObject.activeSelf);
+
+				if (CurrentActiveMenu != null){
+					CurrentActiveMenu.SetActive(!CurrentActiveMenu.activeSelf);
+				}
+
+				CurrentActiveMenu = StartingMenu.gameObject;
 			}
-
-			CurrentActiveMenu = StartingMenu.gameObject;
 		}
 	
 	}
 
-	public void ShowMenu(int index){
+	public void ShowBoxSelectionMenu(object sender, EventArgs args)
+    {    
+        ShowMenu(3, true);
+	}
 
+    public void HideBoxSelectionMenu(object sender, EventArgs args)
+    {
+        Debug.Log(CurrentActiveMenu == MenuCollection[3]);
+        
+        if(CurrentActiveMenu == MenuCollection[3])
+            ShowMenu(3,true);
+    }
+    
+	public void ShowMenu(int index, bool Invert = false){
 
 		if (index > MenuCollection.Length - 1) return;
 
@@ -45,8 +68,17 @@ public class MenuManager : MonoBehaviour {
 		if (_obj == null) return;
 
 		// Здесь можно описать переход.
-		CurrentActiveMenu.SetActive(false);
-		_obj.SetActive(true);
+
+		if (CurrentActiveMenu && CurrentActiveMenu != _obj){
+			CurrentActiveMenu.SetActive(false);
+		};
+
+		if (CurrentActiveMenu != _obj){		
+			_obj.SetActive(true);
+		}else if(Invert){
+			_obj.SetActive(!_obj.activeSelf);
+		};
+		
 		CurrentActiveMenu = _obj;
 
 	}

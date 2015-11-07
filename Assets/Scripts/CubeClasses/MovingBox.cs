@@ -3,18 +3,29 @@ using System;
 using System.Collections;
 using BoxClasses;
 using GameEnums;
+using Motors.BoxMotors;
 
 public class MovingBox : BaseBox
 {
-	private CubeGrid Grid;
-	public static GameObject FieldPrefab;
+	private CubeGrid _grid;
+    private GameObject _player;
+    private BoxMotor _motor;
 
-	private GameObject FieldInstance;
-	
+	//public static GameObject FieldPrefab;
+    //private GameObject FieldInstance;
+	//private bool       _isMoving = false;
+
+	//public void isMovingFalse(){
+	//	_isMoving = false;
+	//}
+
 	// Use this for initialization
 	void Awake () 
 	{
-		Grid = GlobalOptions.Grid;
+		_grid = GlobalOptions.Grid;
+        _player = GlobalOptions.Player;
+
+        _motor = GetComponent<BoxMotor>();
 	}
 
 	private bool CanMove()
@@ -28,53 +39,33 @@ public class MovingBox : BaseBox
 	private bool CanMove(Vector3 direction)
 	{
 		int layerMask = 1 << LayerMask.NameToLayer("Box");
-		return !Physics.Raycast(transform.position, direction, Grid.gridSize, layerMask);
+		return !Physics.Raycast(transform.position, direction, _grid.gridSize, layerMask);
 	}
 
 	public override void UserAction(object sender, EventArgs evArgs)
 	{
-		GameObject player = GlobalOptions.Player;
-
-		if(player.GetComponent<PlayerController>().isMoving()) return;
-
-		// проверим есть ли рядом хотябы один объект
-		if(!CanMove())
-			return;
+        if (!_motor && _motor.isMoving)
+            return;
 
 		// проверим можно ли двигаться в указаном направлении
-		Vector3 direction = -player.transform.up;
+		Vector3 direction = -_player.transform.up;
 
-		if(!CanMove(direction))
+		if(!CanMove() || !CanMove(direction))
 			return;
 
 		// двигаем объект и игрока
-		float coef = Grid.gridSize;
+		float coef = _grid.gridSize;
 
-		transform.position = new Vector3(transform.position.x + coef*direction.x,
+        Vector3 NewPosition = new Vector3(transform.position.x + coef * direction.x,
 		                                 transform.position.y + coef*direction.y,
 		                                 transform.position.z + coef*direction.z);
 
-		player.transform.position = new Vector3(player.transform.position.x + coef*direction.x,
-		                                        player.transform.position.y + coef*direction.y,
-		                                        player.transform.position.z + coef*direction.z);
-	
-		ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Empty, this.gameObject);
+        Vector3[] path = { NewPosition };
+        _motor.path = path;
 
-		// установим тригеры аниматора
-		string triggerName = "";
-		if(direction == transform.forward)       triggerName = "Forward";
-		else if(direction == -transform.forward) triggerName = "Back";
-		else if(direction == transform.up)       triggerName = "Top";
-		else if(direction == -transform.up)      triggerName = "Bottom";
-		else if(direction == transform.right)    triggerName = "Right";
-		else if(direction == -transform.right)   triggerName = "Left";
+        ActionHistory.ActionHistoryManager.AddToHistory(ActionHistoryType.Direction, this.gameObject, -direction);
 
-		if(triggerName != "") thisAnimator.SetTrigger(triggerName);
-		thisAnimator.Update(Time.deltaTime);
-
-		Animator pAnimator = player.GetComponent<Animator>();
-		pAnimator.SetTrigger("UserAction");
-		pAnimator.Update(Time.deltaTime);
+        _motor.StartMoving();
 
 	}
 
@@ -89,5 +80,4 @@ public class MovingBox : BaseBox
 		thisAnimator.SetBool("Approach", true);
 	
 	}
-
 }

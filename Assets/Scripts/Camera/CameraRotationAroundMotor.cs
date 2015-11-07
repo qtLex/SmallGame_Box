@@ -69,7 +69,7 @@ public class CameraRotationAroundMotor : MonoBehaviour {
 
 		Ray toTarget = new Ray(transform.position, TargetObject.transform.position - transform.position);
 
-		RaycastHit[] hits = Physics.SphereCastAll(toTarget, Radius, Vector3.Distance(transform.position, TargetObject.transform.position) - Radius - TargetThickness);
+		RaycastHit[] hits = Physics.SphereCastAll(toTarget, Radius, Vector3.Distance(transform.position, TargetObject.transform.position) - Radius - TargetThickness, LayerMask.GetMask("Box"));
 
 		foreach (RaycastHit _iterator in hits){
 			if (!_iterator.transform.gameObject.Equals(TargetObject)){
@@ -80,9 +80,8 @@ public class CameraRotationAroundMotor : MonoBehaviour {
 					ObsticleHandler = _obj.AddComponent<CameraHideObsticles>();
 				}
 
-				ObsticleHandler.TransparencyShader = TransparentShader;
+				//ObsticleHandler.TransparencyShader = TransparentShader;
 				ObsticleHandler.isOnView = true;
-
 			}
 		}
 

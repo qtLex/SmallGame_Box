@@ -2,44 +2,99 @@
 
 namespace MessengerLib
 {
-	public class EventDescription{
+    public class EventDescription
+    {
 
-		private string eventName;
-		private float timeOut;
-		private EventHandler _handler;
+        private string eventName;
+        private float timeOut;
+        private EventHandler _handler;
 
-		public EventDescription(string eventname, EventHandler handler, float timeout = 0f){
-			eventName = eventname;
-			timeOut = timeout;
-			_handler += handler;
-		}
 
-		public event EventHandler handler{
-			add{_handler += value;}
-			remove{_handler -= value;}
-		}
+        public EventDescription(string eventname, EventHandler handler, float timeout = 0f)
+        {
+            eventName = eventname;
+            timeOut = timeout;
+            _handler += handler;
+        }
 
-		public void Execute(object sender, EventArgs args){
-			if(timeOut > 0)
-				GlobalOptions.DeferredExecutionComponent.AddEvent(sender, _handler, timeOut, args);
-			else
-				_handler(sender, args);
-		}
+        public event EventHandler handler
+        {
+            add { _handler += value; }
+            remove { _handler -= value; }
+        }
 
-		public bool IsName(string eventname){
+        public void Execute(object sender, EventArgs args)
+        {
+            if (timeOut > 0)
+                GlobalOptions.DeferredExecutionComponent.AddEvent(sender, _handler, timeOut, args);
+            else
+                _handler(sender, args);
+        }
 
-			return (eventname == eventName);
+        public bool IsName(string eventname)
+        {
 
-		}
+            return (eventname == eventName);
 
-		public bool IsName(string eventname, float timeout){
-			
-			return ((eventname == eventName) & (timeOut == timeout));
-			
-		}
+        }
 
-		public bool Empty(){
-			return (_handler == null);
-		}
-	}
+        public bool IsName(string eventname, float timeout)
+        {
+
+            return ((eventname == eventName) & (timeOut == timeout));
+
+        }
+
+        public bool Empty()
+        {
+            return (_handler == null);
+        }
+    }
+
+    public class EventDescription<TEventArgs> where TEventArgs : EventArgs
+    {
+        private string eventName;
+        private float timeOut;
+        private EventHandler<TEventArgs> _handler;
+
+        public event EventHandler<TEventArgs> handler
+        {
+            add { _handler += value; }
+            remove { _handler -= value; }
+        }
+
+        public EventDescription(string eventname, EventHandler<TEventArgs> handler, float timeout = 0f)
+        {
+            eventName = eventname;
+            timeOut = timeout;
+            _handler += handler;
+        }
+
+        public void Execute(object sender, TEventArgs args)
+        {
+            if (timeOut > 0)
+                GlobalOptions.DeferredExecutionComponent.AddEvent<TEventArgs>(sender, _handler, timeOut, args);
+            else
+                _handler(sender, args);
+        }
+
+        public bool IsName(string eventname)
+        {
+
+            return (eventname == eventName);
+
+        }
+
+        public bool IsName(string eventname, float timeout)
+        {
+
+            return ((eventname == eventName) & (timeOut == timeout));
+
+        }
+
+        public bool Empty()
+        {
+            return (_handler == null);
+        }
+    }
 }

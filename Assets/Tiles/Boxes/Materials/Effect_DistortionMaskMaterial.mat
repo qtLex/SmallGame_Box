@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Effect_DistortionMaskMaterial
+  m_Shader: {fileID: 4800000, guid: 6aeb5c51bde61144fa6aa089c1ed218c, type: 3}
+  m_ShaderKeywords: MASK
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 69bbe11e20500d8479f26ec634598959, type: 3}
+          m_Scale: {x: .5, y: .5}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _MASK
+        second: 1
+      data:
+        first:
+          name: _DEBUGUV
+        second: 0
+    m_Colors:
+      data:
+        first:
+          name: _IntensityAndScrolling
+        second: {r: .0500000007, g: .0500000007, b: .200000003, a: .200000003}
+      data:
+        first:
+          name: _Intensity
+        second: {r: .100000001, g: .100000001, b: .100000001, a: .5}
+      data:
+        first:
+          name: _PivotAndAngle
+        second: {r: 0, g: 0, b: 45, a: 0}

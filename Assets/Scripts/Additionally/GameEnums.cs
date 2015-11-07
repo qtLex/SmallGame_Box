@@ -8,14 +8,18 @@ namespace GameEnums{
 		Back,
 		Right,
 		Left,
+        Direction,
 		Empty
 	}
 
 	public enum UserActions{
 		Come,
 		Action,
-		// + mors
 		Spawn
-		// - mors 
+	}
+
+	public enum GameModes{
+		EditMode,
+		PlayMode
 	}
 }

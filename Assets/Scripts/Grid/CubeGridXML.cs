@@ -23,6 +23,20 @@ public class CubeGridXML{
 
 	public SerializableXMLElement[] Elements;
 
+	public struct StructNeedTarget
+	{
+		public GameObject obj;
+		public Vector3 targetPos;
+		public iUseTarget comp;
+
+		public void SetArgs(GameObject Obj, Vector3 target)
+		{
+			obj = Obj;
+			targetPos = target;
+			comp = Obj.GetComponent<iUseTarget>();
+		}
+	}
+
 	[Serializable]
 	public struct Vector3Serializer
 	{
@@ -44,25 +58,67 @@ public class CubeGridXML{
 		{ get { return new Vector3(x, y, z); } }
 	}
 
-
 	public class SerializableXMLElement{
 		[XmlAttribute("key")]
 		public string _key;
 		[XmlAttribute("index")]
 		public string _guid;
+		[XmlAttribute("usetarget")]
+		public bool _usetarget;
+
+        [XmlElement(typeof(Vector3Serializer))]
+        public Vector3Serializer _position;
 		[XmlElement(typeof(Vector3Serializer))]
-		public Vector3Serializer _position;
-		
+		public Vector3Serializer _target;
+        [XmlElement(typeof(Vector3Serializer))]
+        public Vector3Serializer _forward;
+        [XmlElement(typeof(Vector3Serializer))]
+        public Vector3Serializer _up;
+        [XmlElement(typeof(Vector3Serializer))]
+        public Vector3Serializer _right;
 		
 		public SerializableXMLElement(){}
 		
-		public SerializableXMLElement(string key, string guid, Vector3 pos){
+		public SerializableXMLElement(string key, string guid, Vector3 pos, Vector3 forward, Vector3 up, Vector3 right){
 			
+			_key = key;
+			_guid = guid;
+			_usetarget = false;
+
+			_position = new Vector3Serializer();
+			_position.Fill(pos);
+            
+       		_forward = new Vector3Serializer();
+			_forward.Fill(forward);
+            
+			_up = new Vector3Serializer();
+			_up.Fill(up);
+
+			_right = new Vector3Serializer();
+			_right.Fill(right);
+			
+		}
+
+		public SerializableXMLElement(string key, string guid, Vector3 pos, Vector3 targ, Vector3 forward, Vector3 up, Vector3 right){
+
 			_key = key;
 			_guid = guid;
 			_position = new Vector3Serializer();
 			_position.Fill(pos);
+
+			_usetarget = true;
+
+			_target = new Vector3Serializer();
+			_target.Fill(targ);
+
+			_forward = new Vector3Serializer();
+			_forward.Fill(forward);
 			
+			_up = new Vector3Serializer();
+			_up.Fill(up);
+			
+			_right = new Vector3Serializer();
+			_right.Fill(right);
 		}
 		
 	}
@@ -112,6 +168,8 @@ public class CubeGridXML{
 
 		CubeLibrary _lib = _grid.m_CubeLibrary;
 		KeyValuePair<string, GameObject>[] LibraryList = _lib.GetObjectsAndGuids();
+		List<StructNeedTarget> NeedTarget = new List<StructNeedTarget>();
+
 
 		foreach(SerializableXMLElement iterator in XMLObject.Elements){
 			GameObject NewCube = null;
@@ -133,6 +191,23 @@ public class CubeGridXML{
 			_grid.currentPrefabGuid = NewGuid;
 			_grid.CreateCubeAt(iterator._position.V3, out CreatedCube);
 
+			CreatedCube.transform.forward = iterator._forward.V3;
+			CreatedCube.transform.up      = iterator._up.V3;
+			CreatedCube.transform.right   = iterator._right.V3;
+
+			if(iterator._usetarget)
+			{
+				StructNeedTarget CurrentTarget = new StructNeedTarget();
+				CurrentTarget.SetArgs(CreatedCube, iterator._target.V3);
+				NeedTarget.Add(CurrentTarget);
+			}
+
+		}
+
+		// пройдемся и проставим таргет по позиции
+		foreach(StructNeedTarget targetObj in NeedTarget.ToArray())
+		{
+			targetObj.comp.SetTarget(_grid.GetCubeAt(targetObj.targetPos));
 		}
 
 		return _grid;

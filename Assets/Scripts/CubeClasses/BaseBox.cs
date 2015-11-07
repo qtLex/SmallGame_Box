@@ -35,12 +35,23 @@ namespace BoxClasses
 			thisAnimator = GetComponent<Animator>();
 			OnSpawn();
 		}
+
+        void OnDestroy()
+        {
+            Messenger.RemoveListener("UserAction", UserAction);
+        }
+
+		public virtual bool CanBeConnected(){ return false;}
+		public virtual void ConnectTo(GameObject other){}
+		public virtual GameObject GetTarget(){return null;}
+		public virtual GameObject[] GetTargets(){return null;}
+
 		// - mors
 	}
 
 	public class BaseCancelAction: MonoBehaviour{
-		
-		public virtual bool CancelAction(ActionHistoryType type){return true;}
+
+        public virtual bool CancelAction(ActionHistoryType type, Vector3 lastDirection) { return true; }
 		
 	}
 }

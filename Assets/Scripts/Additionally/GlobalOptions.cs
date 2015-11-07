@@ -1,12 +1,64 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using GameEnums;
 
 public static class GlobalOptions
 {
+
 	private static GameObject _Player;
 	private static GameObject _CurrentBox;
 	private static CubeGrid   _Grid;
 	private static DeferredExecution _DeferredExecutionComponent;
+	private static GameModes GameMode = GameEnums.GameModes.PlayMode;
+	private static CubeGridEditorGameMode _gameModeEditor;
+	private static GameObject _singleton;
+
+	public static GameObject GetGlobalSingleton(){
+		if(!_singleton){
+			_singleton = GameObject.Find("Empty_Singleton");
+		}
+		return _singleton;
+	}
+
+	public static CubeGridEditorGameMode GetEditorComponent(){
+
+		if (!_gameModeEditor){
+			if(!_singleton)	GetGlobalSingleton();
+			_gameModeEditor = _singleton.GetComponent<CubeGridEditorGameMode>();
+		}
+
+		return _gameModeEditor;
+
+	}
+
+	public static void SwitchMode(){
+
+		if(isPlayMode){
+			SetEditMode();
+		}else if(isEditMode) SetPlayMode();
+
+	}
+
+	public static void SetEditMode(){
+		GameMode = GameEnums.GameModes.EditMode;
+		GetEditorComponent();
+		_gameModeEditor.enabled = true;
+	}
+
+	public static void SetPlayMode(){
+		GameMode = GameEnums.GameModes.PlayMode;
+		GetEditorComponent();
+		_gameModeEditor.enabled = false;
+	}
+
+	public static bool isPlayMode{
+		get{return GameMode == GameEnums.GameModes.PlayMode;}
+	}
+
+	public static bool isEditMode{
+		get{return GameMode == GameEnums.GameModes.EditMode;}
+	}
 
 	public static GameObject Player{
 		get{
@@ -31,9 +83,10 @@ public static class GlobalOptions
 	public static CubeGrid Grid{
 		get{
 			if(!_Grid){
-				GameObject EmptySingleton = GameObject.Find("Empty_Singleton");
-				
-				_Grid = EmptySingleton.GetComponent<CubeGridSingletonObject>().Grid;
+
+                GetGlobalSingleton();				
+				_Grid = _singleton.GetComponent<CubeGridSingletonObject>().Grid;
+
 			}
 
 			return _Grid;
@@ -55,4 +108,10 @@ public static class GlobalOptions
 			return _DeferredExecutionComponent;
 		}
 	}
+
+    public static void Refresh()
+    {
+        _Grid = null;
+    }
+
 }

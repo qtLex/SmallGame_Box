@@ -20,10 +20,10 @@ public class PlayerDetector : MonoBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
-		if(other.gameObject.tag != "Player")
+		if(other.gameObject.tag != "Player" )
 			return;
 
-		BaseBox box =  GlobalOptions.CurrentBox.GetComponent<BaseBox>();
+		BaseBox box =  !GlobalOptions.CurrentBox ? null : GlobalOptions.CurrentBox.GetComponent<BaseBox>();
 		if(box != null){
 			Messenger.RemoveListener("UserAction", box.UserAction);
 		}

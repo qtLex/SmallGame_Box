@@ -6,7 +6,7 @@ public class AnyButtonScript : MonoBehaviour {
 
 		// Добавил коммент
 		public virtual void AwakeBase(){
-			Button buttonComponent = GetComponent<Button>();
+			Button buttonComponent = GetComponentInChildren<Button>();
 			if (buttonComponent == null){
 				return;
 			}

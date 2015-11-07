@@ -14,12 +14,12 @@
       	_RimPower ("Rim Power", Range(0.5,8.0)) = 3.0 // Степень выделения
         _RimStrength("Rim strength", range(0, 1)) = 0 // Напряженность выделения
         
-        _GlossSize("Gloss size", range(0.8, 1)) = 0.99
+        _GlossSize("Gloss size", range(-1, 1)) = 0.99
         _AlphaTransparency("Alpha", range(0.0, 1)) = 0.0
         
     }
     SubShader {
-        Tags {"Queue"="Transparent" "RenderType"="Transparent" }
+        Tags {"Queue"="Transparent-1" "RenderType"="Transparent" }
         LOD 200
  
         Pass {
@@ -130,7 +130,7 @@
  
             };
  
-            v2f vert (a2v v)
+            v2f vert (inout a2v v)
             {
                 v2f o;
                 //Create a rotation matrix for tangent space
