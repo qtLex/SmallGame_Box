@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<CubeGridXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Library="Assets/Tiles/PreAlfaLibrary.asset" Size="10">
+  <Values>
+    <Cube key="(-40.0, 0.0, 80.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="-40" y="0" z="80" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-20.0, 0.0, 20.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="-20" y="0" z="20" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-10.0, 0.0, 20.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="-10" y="0" z="20" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(0.0, 0.0, 20.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="0" y="0" z="20" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(10.0, 0.0, 20.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="10" y="0" z="20" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(0.0, 10.0, 20.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="0" y="10" z="20" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-10.0, 0.0, 40.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="-10" y="0" z="40" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-30.0, 0.0, -10.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="-30" y="0" z="-10" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(40.0, 0.0, 60.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="40" y="0" z="60" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-50.0, 0.0, 80.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="-50" y="0" z="80" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(0.0, 20.0, 20.0)" index="2cfa9706-d83e-411b-90ec-ce2e8ee3184a" usetarget="false">
+      <_position x="0" y="20" z="20" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-30.0, 0.0, 80.0)" index="56a47e76-cd96-436a-9500-69de2af70032" usetarget="false">
+      <_position x="-30" y="0" z="80" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-20.0, 0.0, 10.0)" index="56a47e76-cd96-436a-9500-69de2af70032" usetarget="false">
+      <_position x="-20" y="0" z="10" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-10.0, 0.0, 10.0)" index="56a47e76-cd96-436a-9500-69de2af70032" usetarget="false">
+      <_position x="-10" y="0" z="10" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(0.0, 0.0, 10.0)" index="56a47e76-cd96-436a-9500-69de2af70032" usetarget="false">
+      <_position x="0" y="0" z="10" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-10.0, 10.0, 10.0)" index="56a47e76-cd96-436a-9500-69de2af70032" usetarget="false">
+      <_position x="-10" y="10" z="10" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+    <Cube key="(-30.0, 10.0, -10.0)" index="56a47e76-cd96-436a-9500-69de2af70032" usetarget="false">
+      <_position x="-30" y="10" z="-10" />
+      <_target x="0" y="0" z="0" />
+      <_forward x="0" y="0" z="1" />
+      <_up x="0" y="1" z="0" />
+      <_right x="1" y="0" z="0" />
+    </Cube>
+  </Values>
+</CubeGridXML>

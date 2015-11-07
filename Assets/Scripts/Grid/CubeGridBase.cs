@@ -18,7 +18,7 @@ public class CubeGridBase : ScriptableObject
 			GameObject go = m_CubeLibrary.GetGameObjectByIndex(value);
 			if(go){
 				currentPrefab = go;
-				currentPrefabGuid = m_CubeLibrary.GetGUIDByObject(currentPrefab);
+				currentPrefabGuid = m_CubeLibrary.GetGUIDByIndex(value);
 				currentPrefabIndex = value;
 			}
 

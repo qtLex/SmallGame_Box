@@ -60,6 +60,16 @@ public class CubeLibrary : ScriptableObject {
 
 	}
 
+    public string GetGUIDByIndex(int index)
+    {
+        if ((CubeList != null) && CubeList.Count > 0)
+        {
+            return CubeList[index].Key;
+        }
+
+        return "";
+    }
+
 	public List<Cube> GetList(){
 		return CubeList;
 	}
@@ -69,7 +79,7 @@ public class CubeLibrary : ScriptableObject {
 		CubeTagBehavior TagComponent = _object.GetComponent<CubeTagBehavior>();
 
 		if(TagComponent != null){
-			return TagComponent.guid;
+            return TagComponent.guid;
 		}
 
 		return "";
