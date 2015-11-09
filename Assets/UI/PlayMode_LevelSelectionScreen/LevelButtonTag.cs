@@ -4,22 +4,22 @@ using System.Collections;
 
 public class LevelButtonTag : AnyButtonScript {
 
-	private LevelManager Manager;
+	private LevelManager _manager;
 	public LevelManager.Level LevelInfo;
 
 	void Awake()
     {	
 		base.AwakeBase();
-		Manager = FindObjectOfType<LevelManager>() as LevelManager;
+		_manager = GlobalOptions.LevelManager();
 	}
 
 	// ived
 	public override void onClick()
     {
 
-		if(Manager == null) return;
+		if(_manager == null) return;
 
-		Manager.LoadByPath(LevelInfo.path);
+		_manager.LoadByPath(LevelInfo.path);
 
 		// выключаем меню
 		MenuManager menuManager = FindObjectOfType<MenuManager>() as MenuManager;

@@ -14,7 +14,7 @@ public class LevelUIBuilder : MonoBehaviour {
 	
 	public void RebuildGrid(){
 
-		Manager = FindObjectOfType<LevelManager>() as LevelManager;
+		Manager = GlobalOptions.LevelManager();
 
 		// Очистка списка
 		RectTransform[] transforms = GetComponentsInChildren<RectTransform>();

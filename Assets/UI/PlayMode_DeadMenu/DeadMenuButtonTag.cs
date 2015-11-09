@@ -20,8 +20,8 @@ public class DeadMenuButtonTag : AnyButtonScript {
 		
 		switch(CommandName){
 		case "Restart":{
-			GameObject EmptySingleton = GameObject.Find("Empty_Singleton");
-			LevelManager manager = EmptySingleton.GetComponent<LevelManager>();
+
+			LevelManager manager = GlobalOptions.LevelManager();
 			manager.ReloadCurrentLevel();
 
 			MenuManager menuManager = FindObjectOfType<MenuManager>() as MenuManager;

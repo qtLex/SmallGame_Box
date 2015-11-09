@@ -25,6 +25,11 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 	private GameObject _selectedObject;
 	private GameObject _targetLine;
 	private int _targetLineSteps = 0;
+	private LevelManager _levelManager;
+
+	public CubeGrid Grid{
+		get {return _grid;}
+	}
 
 	public GameObject CursorObject{
 		get{return _marker;}
@@ -75,6 +80,7 @@ public class CubeGridEditorGameMode : MonoBehaviour {
 		_grid     = GlobalOptions.Grid;
 		_library  = _grid.m_CubeLibrary;
 		_gridSize = _grid.gridSize;
+		_levelManager = GlobalOptions.LevelManager();
 		
 	}
 

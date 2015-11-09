@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class EditorFunctionsUIBuilder : MonoBehaviour {
 
 	public GameObject ButtonPrefab;
-	private string[] MenuComands = {"Add","Delete","Move","Connect","Open","Save"};
+	private string[] MenuComands = {"Add","Delete","Move","Connect","New","Save"};
 	private CubeGridEditorGameMode _editor;
 
 	void Start(){

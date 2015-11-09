@@ -20,10 +20,10 @@ public class ExtendedFlycam : MonoBehaviour
 	private CubeGridEditorGameMode _editorMode;
 	
 	void OnEnable(){
-		if(RotateByMouse){
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
-		}
+//		if(RotateByMouse){
+//			Cursor.lockState = CursorLockMode.Locked;
+//			Cursor.visible = false;
+//		}
 		transform.LookAt(GlobalOptions.Player.transform, transform.up);
 		Messenger.AddListener("ShowHideBoxSelection", ShowHideBoxSelectionMenu);  
 
@@ -33,16 +33,14 @@ public class ExtendedFlycam : MonoBehaviour
 
 	void OnDisable(){
 		
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
+//		Cursor.lockState = CursorLockMode.None;
+//		Cursor.visible = true;
 		
 		Messenger.RemoveListener("ShowHideBoxSelection", ShowHideBoxSelectionMenu);
 	}
 	
 	private void ShowHideBoxSelectionMenu(object sender, EventArgs evArgs){
-
-		Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ?  CursorLockMode.Locked : CursorLockMode.None;
-		Cursor.visible = !Cursor.visible;
+			
 		_active = !_active;
 
 	}
@@ -100,10 +98,6 @@ public class ExtendedFlycam : MonoBehaviour
 		
 		if (Input.GetKey (KeyCode.Q)) {transform.position += transform.up * climbSpeed * Time.deltaTime;}
 		if (Input.GetKey (KeyCode.E)) {transform.position -= transform.up * climbSpeed * Time.deltaTime;}
-		
-		if (Input.GetKeyDown (KeyCode.End))
-		{
-			Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ?  CursorLockMode.Locked : CursorLockMode.None;
-		}
+
 	}
 }

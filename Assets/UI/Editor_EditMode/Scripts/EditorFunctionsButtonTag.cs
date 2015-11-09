@@ -28,6 +28,9 @@ public class EditorFunctionsButtonTag : AnyButtonScript {
 		if(!_editor){
 			_editor = GlobalOptions.GetEditorComponent();
 		}
+
+		//_thisImage = GetComponent<Image>();
+
 	}
 
 	void Awake(){
@@ -44,8 +47,8 @@ public class EditorFunctionsButtonTag : AnyButtonScript {
 		case "Delete": DeleteButtonPress(); break;
 		case "Move":   MoveButtonPress(); break;
 		case "Connect":ConnectButtonPress(); break;
-		case "Open":   OpenButtonPress(); break;
-		case "Save":   SaveButtonPress(); break;
+		case "New":   CreateBlankPress(); break;
+		case "Save":  SaveButtonPress(); break;
 
 			default: break;
 		}
@@ -70,6 +73,7 @@ public class EditorFunctionsButtonTag : AnyButtonScript {
 		_editor.SetConnectMode();
 		AnyButtonPress();
 	}
+
 	private void OpenButtonPress()
     {
         MenuManager menuManager = FindObjectOfType<MenuManager>() as MenuManager;

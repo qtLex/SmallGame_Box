@@ -11,10 +11,6 @@ public class BoxSelectionUIBuilder : MonoBehaviour {
 	private List<Cube> _cubeList;
 	private Texture[] _previewArray;
 
-	void Start(){
-
-	}
-
 	void Awake () {
 
 		_editor = GlobalOptions.GetEditorComponent();

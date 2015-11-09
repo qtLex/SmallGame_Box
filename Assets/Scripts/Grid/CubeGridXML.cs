@@ -138,13 +138,13 @@ public class CubeGridXML{
 	}
 
 	public CubeGridXML(CubeGrid original, string path){
-
+		
 		Elements = original.GetElements();
 		CubeSize =  original.gridSize;
 		CubeLibraryPath = AssetDatabase.GetAssetPath(original.m_CubeLibrary);
 
 		XmlSerializer serializer = new XmlSerializer(typeof(CubeGridXML));
-		using(Stream stream = new FileStream(path, FileMode.OpenOrCreate))
+		using(Stream stream = new FileStream(path, FileMode.CreateNew))
 		{
 			serializer.Serialize(stream, this);
 		}

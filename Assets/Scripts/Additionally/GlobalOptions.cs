@@ -13,6 +13,16 @@ public static class GlobalOptions
 	private static GameModes GameMode = GameEnums.GameModes.PlayMode;
 	private static CubeGridEditorGameMode _gameModeEditor;
 	private static GameObject _singleton;
+	private static LevelManager _levelManager;
+
+	public static LevelManager LevelManager(){
+		if (!_levelManager){
+			GetGlobalSingleton();
+			_levelManager = _singleton.GetComponent<LevelManager>();
+		}
+
+		return _levelManager;
+	}
 
 	public static GameObject GetGlobalSingleton(){
 		if(!_singleton){
